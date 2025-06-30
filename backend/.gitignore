@@ -1,0 +1,87 @@
+# Diretórios de dependências
+node_modules/
+bower_components/
+jspm_packages/
+web_modules/
+
+# Cache e builds
+.cache/
+.parcel-cache/
+.build/
+dist/
+out/
+.next/
+.nuxt/
+.vuepress/dist
+.serverless/
+.fusebox/
+.dynamodb/
+build/
+lib-cov
+
+# Arquivos de produção/teste
+*.tgz
+*.pem
+*.seed
+*.log
+*.pid
+*.pid.lock
+*.lcov
+*.tsbuildinfo
+*.tgz
+*.tgz
+*.tgz
+
+# Arquivos de ambiente
+.env
+.env.local
+.env.development.local
+.env.test
+.env.test.local
+.env.production
+.env.production.local
+
+# Arquivos de debug e relatório
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.pnpm-debug.log*
+report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+.node_repl_history
+
+# Cache de ferramentas
+.rpt2_cache/
+.rts2_cache_cjs/
+.rts2_cache_es/
+.rts2_cache_umd/
+.eslintcache
+.yarn-integrity
+
+# Yarn v2
+.yarn/cache
+.yarn/unplugged
+.yarn/build-state.yml
+.yarn/install-state.gz
+.pnp
+.pnp.js
+.pnp.*
+
+# Cobertura de testes
+coverage/
+.nyc_output/
+
+# Arquivos do sistema
+.DS_Store
+.lock-wscript
+
+# VS Code
+.vscode/
+.vscode-test/
+
+# Vercel
+.vercel
+
+# Outros
+logs/
+.tern-port
