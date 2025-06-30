@@ -1,4 +1,4 @@
-FROM node:latest
+FROM node:18
 
 WORKDIR /app
 
@@ -7,6 +7,8 @@ RUN npm install
 
 COPY . .
 
+RUN npm install -g nodemon
+
 EXPOSE 3000
 
-CMD ["node", "src/app.js"]
+CMD ["npm", "run", "dev"]
