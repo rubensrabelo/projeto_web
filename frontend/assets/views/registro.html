@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <title>Registrar</title>
+  <link rel="stylesheet" href="../css/geral.css">
+  <link rel="stylesheet" href="../css/register.css">
+</head>
+<body>
+  <form id="registerForm">
+    <h2>Registrar</h2>
+    <input type="text" name="firstname" placeholder="Nome" required />
+    <input type="text" name="lastname" placeholder="Sobrenome" required />
+    <input type="email" name="email" placeholder="E-mail" required />
+    <input type="password" name="password" placeholder="Senha" required />
+    <select name="role" required>
+      <option value="">Selecione o papel</option>
+      <option value="student">Estudante</option>
+      <option value="teacher">Professor</option>
+    </select>
+    <button type="submit">Registrar</button>
+    <p><a href="login.html">Já tem uma conta? Entrar</a></p>
+    <p><a href="../../index.html">← Voltar para a página inicial</a></p>
+  </form>
+
+  <script src="../js/registro.js"></script>
+</body>
+</html>
