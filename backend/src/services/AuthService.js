@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 
 const JWT_SECRET = process.env.JWT_SECRET || "secretkey";
 
-class AuthController{
+class AuthService{
     async register(req, res) {
         const { name, email, password, role } = req.body;
 
@@ -59,4 +59,4 @@ class AuthController{
     }
 }
 
-module.exports = new AuthController();
+module.exports = new AuthService();
