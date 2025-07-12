@@ -5,7 +5,7 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
   const dados = Object.fromEntries(formData);
 
   try {
-    const resposta = await fetch("http://localhost:3001/login", {
+    const resposta = await fetch("http://localhost:3000/auth/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(dados)
