@@ -5,7 +5,6 @@ const courseSchema = new mongoose.Schema({
     description: String,
     classSchedule: String,
     classQuantity: Number,
-    createdAt: { type: Date, default: Date.now },
     teacher: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
@@ -21,6 +20,6 @@ const courseSchema = new mongoose.Schema({
         type: Boolean,
         default: true
     },
-});
+}, { timestamps: true });
 
 module.exports = mongoose.model("Course", courseSchema);

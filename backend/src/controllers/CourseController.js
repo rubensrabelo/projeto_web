@@ -10,9 +10,26 @@ class CouseController {
         }
     }
 
-    async getById(req, res) {
+    async getCourseByIdWithTeacher(req, res) {
         try {
-            const course = await CourseService.getCourseById(req.params.id);
+            const course = await CourseService.getCourseByIdWithTeacher(req.params.id);
+            
+            if(!course)
+                return res.status(404).json({ error: "Course not found." })
+
+            res.json(course);
+        } catch (err) {
+            res.status(500).json({ error: "Error fetching course" });
+        }
+    }
+
+    async getCourseByIdWithStudents(req, res) {
+        try {
+            const course = await CourseService.getCourseByIdWithStudents(req.params.id);
+            
+            if(!course)
+                return res.status(404).json({ error: "Course not found." })
+
             res.json(course);
         } catch (err) {
             res.status(500).json({ error: "Error fetching course" });

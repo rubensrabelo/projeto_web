@@ -5,9 +5,12 @@ class CourseService {
         return await Course.create({ name, description, teacher: teacherId });
     }
 
-    // Pensar em pegar esses dados em conjunto com o professor e outro com alunos
-    async getCourseById(id) {
-        return await Course.findById(id);
+    async getCourseByIdWithTeacher(id) {
+        return await Course.findById(id).populate("teacher", "name email");
+    }
+
+    async getCourseByIdWithStudents(id) {
+        return await Course.findById(id).populate("students", "name email");
     }
 
     async getCoursesByTeacher(teacherId) {

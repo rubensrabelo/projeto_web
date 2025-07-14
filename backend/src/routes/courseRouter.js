@@ -5,8 +5,10 @@ const auth = require("../middleware/authMiddleware");
 const router = express.Router();
 
 router.post("/", auth("teacher"), CourseController.create);
-router.get("/:id", auth(), CourseController.getById);
 router.get("/teacher", auth("teacher"), CourseController.getByTeacher);
 router.get("/student", auth("student"), CourseController.getById);
+
+router.get("/:id/teacher", auth(), CourseController.getCourseByIdWithTeacher);
+router.get("/:id/students", auth(), CourseController.getCourseByIdWithStudents);
 
 module.exports = router;
