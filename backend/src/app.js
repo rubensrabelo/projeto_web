@@ -3,8 +3,9 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const cors = require("cors");
 
-const authRoutes = require("./routes/authRouter");
+const authRouter = require("./routes/authRouter");
 const userRouter = require("./routes/userRouter");
+const courseRouter = require("./routes/courseRouter")
 
 dotenv.config();
 
@@ -13,8 +14,9 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-app.use('/auth', authRoutes);
-app.use('/users', userRouter);
+app.use("/auth", authRouter);
+app.use("/users", userRouter);
+app.use("/courses", courseRouter);
 
 mongoose.connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
@@ -25,5 +27,5 @@ mongoose.connect(process.env.MONGO_URI, {
         console.log(`API running on the port ${process.env.PORT}`);
     });
 }).catch((err) => {
-    console.log("Erro ao conectar no MongoDB:", err);
+    console.log("Error connecting to MongoDB:", err);
 });
