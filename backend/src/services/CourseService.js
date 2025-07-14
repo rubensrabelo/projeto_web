@@ -6,11 +6,11 @@ class CourseService {
     }
 
     async getCourseByIdWithTeacher(id) {
-        return await Course.findById(id).populate("teacher", "name email");
+        return await Course.findById(id).populate("teacher", "firstname lastname email");
     }
 
     async getCourseByIdWithStudents(id) {
-        return await Course.findById(id).populate("students", "name email");
+        return await Course.findById(id).populate("students", "firstname lastname email");
     }
 
     async getCoursesByTeacher(teacherId) {

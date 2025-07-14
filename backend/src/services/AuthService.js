@@ -5,12 +5,12 @@ const jwt = require("jsonwebtoken");
 const JWT_SECRET = process.env.JWT_SECRET || "secretkey";
 
 class AuthService {
-  async register({ name, email, password, role }) {
+  async register({ firstname, lastname, email, password, role }) {
     const existingUser = await User.findOne({ email });
     if (existingUser) throw new Error("Email is already in use.");
 
     const hashedPassword = await bcrypt.hash(password, 10);
-    const user = await User.create({ name, email, password: hashedPassword, role });
+    const user = await User.create({ firstname, lastname, email, password: hashedPassword, role });
 
     return {
       message: "User created successfully.",
