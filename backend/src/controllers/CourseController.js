@@ -1,6 +1,6 @@
 const CourseService = require("../services/CourseService");
 
-class CouseController {
+class CourseController {
     async create(req, res) {
         try {
             const course = await CourseService.create(req.body, req.user.id);
@@ -44,6 +44,7 @@ class CouseController {
             res.status(500).json({ error: "Error fetching professor courses" });
         }
     }
+
     async getByStudent(req, res) {
         try {
             const courses = await CourseService.getCoursesByStudent(req.user.id);
@@ -52,6 +53,22 @@ class CouseController {
             res.status(500).json({ error: "Error fetching student courses" });
         }
     }
+
+    async enroll(req, res) {
+        const studentId = req.user.id;
+        const { id: courseId } = req.params;
+
+        try {
+            const course = await CourseService.enrollStudent(courseId, studentId);
+
+            if(!course)
+                return res.status(404).json({ error: "Course not found." })
+
+            res.json({ message: "Enrolled successfully.", course });
+        } catch (err) {
+            res.status(400).json({ error: err.message || "Enrollment failed." })
+        }
+    }
 }
 
-module.exports = new CouseController();
+module.exports = new CourseController();
