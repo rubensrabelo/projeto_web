@@ -1,9 +1,9 @@
 const User = require("../models/User");
 
 class UserService {
-    async findByEmail(req, res) {
-        return null;
+    async getUserById(id) {
+        return await User.findById(id).select("-password");
     }
 }
 
-module.exports = new UserService;
+module.exports = new UserService();

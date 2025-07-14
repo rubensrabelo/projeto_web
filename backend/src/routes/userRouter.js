@@ -1,9 +1,9 @@
 const express = require("express");
 const auth = require("../middleware/authMiddleware");
-const UserService = require("../services/UserService");
+const UserController = require("../controllers/UserController");
 
 const router = express.Router();
 
-router.get("/", auth(), (req, res) => UserService.findByEmail(req, res));
+router.get("/me", auth(), (req, res) => UserController.getProfile(req, res));
 
 module.exports = router;
