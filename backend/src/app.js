@@ -5,7 +5,8 @@ const cors = require("cors");
 
 const authRouter = require("./routes/authRouter");
 const userRouter = require("./routes/userRouter");
-const courseRouter = require("./routes/courseRouter")
+const courseRouter = require("./routes/courseRouter");
+const topicRouter = require("./routes/topic.router");
 
 dotenv.config();
 
@@ -17,6 +18,7 @@ app.use(cors());
 app.use("/auth", authRouter);
 app.use("/users", userRouter);
 app.use("/courses", courseRouter);
+app.use("/topics", topicRouter);
 
 mongoose.connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
