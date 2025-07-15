@@ -14,7 +14,13 @@ class AuthService {
 
     return {
       message: "User created successfully.",
-      user: { id: user._id, name: user.name, email: user.email, role: user.role }
+      user: { 
+        id: user._id,
+        firstname: user.firstname, 
+        lastname: user.lastname,
+        email: user.email, 
+        role: user.role
+       }
     };
   }
 
@@ -32,7 +38,13 @@ class AuthService {
     return {
       message: "Successful login.",
       token,
-      user: { id: user._id, name: user.name, email: user.email, role: user.role }
+      user: { 
+        id: user._id,
+        firstname: user.firstname,
+        lastaname: user.lastname,
+        email: user.email,
+        role: user.role 
+      }
     };
   }
 }
