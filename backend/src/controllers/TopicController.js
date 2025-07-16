@@ -36,7 +36,7 @@ class TopicController {
 
     async update(req, res) {
         const { topicId } = req.params;
-        const { teacherId } = req.user.id;
+        const teacherId = req.user.id;
         const data = req.body;
 
         try {
