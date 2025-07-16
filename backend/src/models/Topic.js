@@ -7,7 +7,7 @@ const topicSchema = new mongoose.Schema({
     },
     type: {
         type: String,
-        enum: ["assignment", "lecture", "quiz", "discussion"],
+        enum: ["lecture", "activity"],
         required: true
     },
     dueDateTime: {
