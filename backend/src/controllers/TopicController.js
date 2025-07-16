@@ -20,7 +20,6 @@ class TopicController {
 
             res.status(201).json(topic);
         } catch (err) {
-            console.error("[CREATE_TOPIC_ERROR]", err);
             res.status(500).json({ error: "Error creating topic." });
         }
     }
@@ -32,6 +31,20 @@ class TopicController {
             res.json(topics);
         } catch (err) {
             res.status(500).json({ error: "Error fetching topics" });
+        }
+    }
+
+    async update(req, res) {
+        const { topicId } = req.params;
+        const { teacherId } = req.user.id;
+        const data = req.body;
+
+        try {
+            const updated = await TopicService.update(topicId, data, teacherId);
+
+            res.json(updated)
+        } catch (err) {
+            res.status(err.status || 500).json({ error: err.message || "Error updating topic." });
         }
     }
 }
