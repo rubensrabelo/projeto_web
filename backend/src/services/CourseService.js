@@ -5,6 +5,12 @@ class CourseService {
         return await Course.create({ name, description, teacher: teacherId });
     }
 
+    async getByName(name) {
+        return await Course.find({
+            name: { $regex: new RegExp(name, "i") }
+        });
+    }
+
     async getCourseByIdWithTeacher(id) {
         return await Course.findById(id).populate("teacher", "firstname lastname email");
     }

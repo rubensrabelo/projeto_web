@@ -10,6 +10,17 @@ class CourseController {
         }
     }
 
+    async getCourseByName(req, res) {
+        const {name } = req.query;
+
+        try {
+            const courses = await CourseService.getByName(name);
+            res.json(courses);
+        } catch (err) {
+            res.status(500).json({ error: "Error searching courses by name." });
+        }
+    }
+
     async getCourseByIdWithTeacher(req, res) {
         try {
             const course = await CourseService.getCourseByIdWithTeacher(req.params.id);
