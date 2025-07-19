@@ -18,7 +18,7 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
 
       localStorage.setItem("token", resultado.token);
 
-      window.location.href = "../views/painel.html";
+      window.location.href = "../views/home.html";
     } else {
       alert(resultado.error || "Credenciais inválidas.");
     }
