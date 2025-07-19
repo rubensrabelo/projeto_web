@@ -1,36 +1,29 @@
 const User = require("../models/User");
+const bcrypt = require("bcryptjs");
 
 class UserService {
-    async getUserById(id) {
-        return await User.findById(id).select("-password");
-    }
+  async getUserById(id) {
+    return await User.findById(id).select("-password");
+  }
 
-    async update(userId, data) {
-    const user = await User.findById(userId);
-    if (!user) 
-        return null;
-
-    const allowedFields = ["firstname", "lastname", "email", "password"];
-    let updated = false;
-
-    for (const field of allowedFields) {
-      if (data[field] !== undefined && user[field] !== data[field]) {
-        user[field] = data[field];
-        updated = true;
+  async update(userId, updateData) {
+    if (updateData.password) {
+      const trimmed = updateData.password.trim();
+      if (trimmed !== "") {
+        const salt = await bcrypt.genSalt(10);
+        updateData.password = await bcrypt.hash(trimmed, salt);
+      } else {
+        delete updateData.password;
       }
     }
 
-    if (data.password && data.password.trim() !== "") {
-      user.password = data.password;
-      updated = true;
-    }
+    const updatedUser = await User.findByIdAndUpdate(
+      userId,
+      { $set: updateData },
+      { new: true, runValidators: true }
+    ).select("-password");
 
-    if (updated) {
-      await user.save();
-    }
-
-    const { password, ...safeUser } = user.toObject();
-    return safeUser;
+    return updatedUser;
   }
 }
 
