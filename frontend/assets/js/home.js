@@ -1,43 +1,35 @@
 document.addEventListener("DOMContentLoaded", async () => {
   const token = localStorage.getItem("token");
-  if (!token) {
-    alert("Você precisa estar logado.");
-    window.location.href = "../../index.html";
-    return;
-  }
+  if (!token) return window.location.href = "../../index.html";
 
   try {
-    const res = await fetch("http://localhost:3000/courses/teacher", {
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
+    const res = await fetch("http://localhost:3000/users/me", {
+      headers: { Authorization: `Bearer ${token}` }
     });
 
-    if (!res.ok) {
-      throw new Error("Erro ao buscar disciplinas.");
-    }
+    const data = await res.json();
+    const nomeProf = data.firstname || "Professor";
+    document.getElementById("boasVindas").textContent = `Bem-vindo, ${nomeProf}!`;
 
-    const cursos = await res.json();
+    const cursosRes = await fetch("http://localhost:3000/courses/teacher", {
+      headers: { Authorization: `Bearer ${token}` }
+    });
+
+    const cursos = await cursosRes.json();
     const lista = document.getElementById("listaDisciplinas");
 
-    if (cursos.length === 0) {
-      lista.innerHTML = "<li>Nenhuma disciplina encontrada.</li>";
-      return;
-    }
-
-    console.log(cursos[0])
-
     cursos.forEach(curso => {
-      const li = document.createElement("li");
-      li.innerHTML = `
-        <strong>${curso.name}</strong><br/>
-        <span>${curso.classSchedule || "Sem horário definido"}</span>
+      const item = document.createElement("div");
+      item.className = "disciplina";
+      item.innerHTML = `
+        <h3>${curso.name}</h3>
+        <p><strong>Horário:</strong> ${curso.classSchedule || "N/A"}</p>
       `;
-      lista.appendChild(li);
+      lista.appendChild(item);
     });
-
   } catch (err) {
-    alert("Erro: " + err.message);
+    console.error(err);
+    alert("Erro ao carregar dados.");
   }
 });
 
