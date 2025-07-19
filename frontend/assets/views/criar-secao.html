@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <title>Criar Seção</title>
+  <link rel="stylesheet" href="../css/geral.css" />
+  <link rel="stylesheet" href="../css/criar-secao.css" />
+</head>
+<body>
+  <div class="layout">
+    <nav class="sidebar">
+      <h3>Menu</h3>
+      <a href="home.html">Home</a>
+      <a href="pesquisar.html">Pesquisar Disciplina</a>
+      <a href="perfil.html">Editar Perfil</a>
+      <button onclick="logout()">Sair</button>
+    </nav>
+
+    <main class="content">
+      <h2 id="boasVindas">Bem-vindo!</h2>
+
+      <div class="form-container">
+        <h2>Nova Seção</h2>
+        <form id="formSecao">
+          <input type="text" id="titulo" placeholder="Título da seção *" required />
+          
+          <select id="tipo" required>
+            <option value="">Selecione o tipo</option>
+            <option value="lecture">Aula</option>
+            <option value="activity">Atividade</option>
+          </select>
+          
+          <label for="dueDateTime">Data e Hora de entrega (opcional):</label>
+          <input type="datetime-local" id="dueDateTime" />
+
+          <input type="number" id="submissionLimit" placeholder="Limite de submissões (padrão 1)" min="1" />
+
+          <button type="submit">Criar Seção</button>
+        </form>
+      </div>
+    </main>
+  </div>
+
+  <script src="../js/criar-secao.js"></script>
+</body>
+</html>

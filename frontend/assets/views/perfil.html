@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <title>Editar Perfil</title>
+  <link rel="stylesheet" href="../css/geral.css" />
+  <link rel="stylesheet" href="../css/perfil.css" />
+</head>
+<body>
+  <div class="layout">
+    <nav class="sidebar">
+      <h3>Menu</h3>
+      <a href="home.html">Home</a>
+      <a href="pesquisar.html">Pesquisar Disciplina</a>
+      <a href="perfil.html">Editar Perfil</a>
+      <button onclick="logout()">Sair</button>
+    </nav>
+
+    <main class="content">
+      <h2 id="boasVindas">Bem-vindo!</h2>
+
+      <div class="form-container">
+        <h2>Editar Perfil</h2>
+        <form id="formPerfil">
+          <input type="text" id="firstname" placeholder="Primeiro nome" required />
+          <input type="text" id="lastname" placeholder="Sobrenome" required />
+          <input type="email" id="email" placeholder="Email" required />
+          <input type="password" id="password" placeholder="Nova senha (opcional)" />
+          <button type="submit">Salvar Alterações</button>
+        </form>
+       </div>
+    </main>
+  </div>
+
+  <script src="../js/perfil.js"></script>
+</body>
+</html>
