@@ -1,48 +1,7 @@
-.layout {
-  display: flex;
-  height: 100vh;
-  font-family: Arial, sans-serif;
-}
-
-.sidebar {
-  width: 220px;
-  background-color: #f4f4f4;
-  padding: 20px;
-  border-right: 1px solid #ccc;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-.sidebar h3 {
-  margin-top: 0;
-}
-
-.sidebar a, .sidebar button {
-  text-decoration: none;
-  color: #333;
-  background-color: #ddd;
-  padding: 10px;
-  border: none;
-  border-radius: 5px;
-  text-align: left;
-  cursor: pointer;
-}
-
-.sidebar a:hover, .sidebar button:hover {
-  background-color: #ccc;
-}
-
 .content {
   flex: 1;
   padding: 40px;
   text-align: center;
-}
-
-#boasVindas {
-  font-size: 26px;
-  color: #333;
-  margin-bottom: 20px;
 }
 
 .topo-conteudo {
@@ -59,7 +18,7 @@
 }
 
 .topo-conteudo button:hover {
-  background-color: #007bff;
+  background-color: #0056b3;
 }
 
 .disciplinas-container {

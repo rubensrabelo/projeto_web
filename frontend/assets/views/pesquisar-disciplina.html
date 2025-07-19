@@ -2,16 +2,16 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8" />
-  <title>Minhas Disciplinas</title>
+  <title>Pesquisar Disciplina</title>
   <link rel="stylesheet" href="../css/geral.css" />
-  <link rel="stylesheet" href="../css/home.css" />
+  <link rel="stylesheet" href="../css/pesquisar-disciplina.css" />
 </head>
 <body>
   <div class="layout">
     <nav class="sidebar">
       <h3>Menu</h3>
       <a href="home.html">Home</a>
-      <a href="pesquisar-disciplina.html">Pesquisar Disciplina</a>
+      <a href="pesquisar.html">Pesquisar Disciplina</a>
       <a href="perfil.html">Editar Perfil</a>
       <button onclick="logout()">Sair</button>
     </nav>
@@ -20,14 +20,14 @@
       <h2 id="boasVindas">Bem-vindo!</h2>
 
       <div class="topo-conteudo">
-        <button onclick="window.location.href='criar-disciplina.html'">Nova Disciplina</button>
+        <input type="text" id="campoBusca" placeholder="Buscar disciplina por nome..." />
+        <button onclick="buscarDisciplinas()">Buscar</button>
       </div>
 
-      <div id="listaDisciplinas" class="disciplinas-container">
-      </div>
+      <div id="resultados" class="disciplinas-container"></div>
     </main>
   </div>
 
-  <script src="../js/home.js"></script>
+  <script src="../js/pesquisar-disciplina.js"></script>
 </body>
 </html>
