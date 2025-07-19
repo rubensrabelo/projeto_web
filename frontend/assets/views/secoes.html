@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <title>Seções da Disciplina</title>
+  <link rel="stylesheet" href="../css/geral.css" />
+  <link rel="stylesheet" href="../css/secoes.css" />
+</head>
+<body>
+  <div class="layout">
+    <nav class="sidebar">
+      <h3>Menu</h3>
+      <a href="home.html">Home</a>
+      <a href="pesquisar.html">Pesquisar Disciplina</a>
+      <a href="perfil.html">Editar Perfil</a>
+      <button onclick="logout()">Sair</button>
+    </nav>
+
+    <main class="content">
+      <h2 id="boasVindas">Bem-vindo!</h2>
+
+      <div class="topo-conteudo">
+        <button onclick="irParaCriarSecao()">Criar Nova Seção</button>
+      </div>
+
+      <div id="listaSecoes" class="secoes-container"></div>
+    </main>
+  </div>
+
+  <script src="../js/secoes.js"></script>
+</body>
+</html>

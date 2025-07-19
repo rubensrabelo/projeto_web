@@ -1,0 +1,68 @@
+.content {
+  flex: 1;
+  padding: 40px;
+  text-align: center;
+}
+
+.topo-conteudo {
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.topo-conteudo input {
+  padding: 10px;
+  width: 300px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+.topo-conteudo button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.topo-conteudo button:hover {
+  background-color: #0056b3;
+}
+
+.secoes-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.secao {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.secao h3 {
+  margin: 0;
+}
+
+.secao button {
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.secao button:hover {
+  background-color: #0056b3;
+}
