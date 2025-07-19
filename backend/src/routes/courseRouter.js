@@ -7,6 +7,7 @@ const router = express.Router();
 router.post("/", auth("teacher"), CourseController.create);
 router.post("/:id/enroll", auth("student"), CourseController.enroll);
 
+router.get("/search", auth(), CourseController.getCourseByName);
 router.get("/teacher", auth("teacher"), CourseController.getByTeacher);
 router.get("/student", auth("student"), CourseController.getByStudent);
 

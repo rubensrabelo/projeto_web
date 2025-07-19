@@ -13,8 +13,8 @@ class CourseController {
     async getCourseByIdWithTeacher(req, res) {
         try {
             const course = await CourseService.getCourseByIdWithTeacher(req.params.id);
-            
-            if(!course)
+
+            if (!course)
                 return res.status(404).json({ error: "Course not found." })
 
             res.json(course);
@@ -26,13 +26,23 @@ class CourseController {
     async getCourseByIdWithStudents(req, res) {
         try {
             const course = await CourseService.getCourseByIdWithStudents(req.params.id);
-            
-            if(!course)
+
+            if (!course)
                 return res.status(404).json({ error: "Course not found." })
 
             res.json(course);
         } catch (err) {
             res.status(500).json({ error: "Error fetching course" });
+        }
+    }
+
+    async getCourseByName(req, res) {
+        try {
+            const { name } = req.query;
+            const courses = await CourseService.getCourseByName(name);
+            res.json(courses);
+        } catch (err) {
+            res.status(500).json({ error: "Error searching courses" });
         }
     }
 
@@ -61,7 +71,7 @@ class CourseController {
         try {
             const course = await CourseService.enrollStudent(courseId, studentId);
 
-            if(!course)
+            if (!course)
                 return res.status(404).json({ error: "Course not found." })
 
             res.json({ message: "Enrolled successfully.", course });
