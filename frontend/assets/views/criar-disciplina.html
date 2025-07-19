@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <title>Criar Disciplina</title>
+  <link rel="stylesheet" href="../css/geral.css">
+  <link rel="stylesheet" href="../css/criar-disciplina.css">
+</head>
+<body>
+  <div class="container">
+    <h2>Nova Disciplina</h2>
+    <form id="formDisciplina">
+      <input type="text" id="nome" placeholder="Nome da disciplina *" required />
+      <textarea id="descricao" placeholder="Descrição (opcional)"></textarea>
+      <input type="text" id="horario" placeholder="Horário das aulas (ex: Seg, 08h - 10h)" />
+      <input type="number" id="quantidade" placeholder="Quantidade de aulas" min="1" />
+      <button type="submit">Criar</button>
+    </form>
+    <button onclick="voltar()">Voltar</button>
+  </div>
+
+  <script src="../js/criar-disciplina.js"></script>
+</body>
+</html>

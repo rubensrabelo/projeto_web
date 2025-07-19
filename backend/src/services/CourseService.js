@@ -1,8 +1,14 @@
 const Course = require("../models/Course");
 
 class CourseService {
-    async create({ name, description }, teacherId) {
-        return await Course.create({ name, description, teacher: teacherId });
+    async create({ name, description, classSchedule, classQuantity }, teacherId) {
+        return await Course.create({ 
+            name,
+            description, 
+            classSchedule, 
+            classQuantity, 
+            teacher: teacherId 
+        });
     }
 
     async getByName(name) {
