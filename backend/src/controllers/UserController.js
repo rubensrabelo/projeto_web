@@ -11,6 +11,22 @@ class UserController {
             res.status(500).json({ error: "Server error" });
         }
     }
+
+    async update(req, res) {
+    const userId = req.user.id;
+    const updateData = req.body;
+
+    try {
+      const updatedUser = await UserService.update(userId, updateData);
+      if (!updatedUser) {
+        return res.status(404).json({ error: "User not found." });
+      }
+
+      res.json(updatedUser);
+    } catch (err) {
+      res.status(500).json({ error: "Error updating user." });
+    }
+  }
 }
 
 module.exports = new UserController();
