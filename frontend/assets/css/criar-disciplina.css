@@ -1,5 +1,5 @@
 .container {
-  max-width: 400px;
+  max-width: 500px;
   margin: 60px auto;
   padding: 20px;
   background: white;
@@ -8,10 +8,13 @@
   text-align: center;
 }
 
-input {
+input, textarea {
   width: 100%;
   padding: 10px;
   margin-bottom: 15px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  resize: vertical;
 }
 
 button {
