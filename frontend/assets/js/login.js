@@ -14,8 +14,6 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
     const resultado = await resposta.json();
 
     if (resposta.ok) {
-      alert("Login realizado com sucesso!");
-
       localStorage.setItem("token", resultado.token);
 
       window.location.href = "../views/home.html";
@@ -24,6 +22,5 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
     }
   } catch (erro) {
     alert("Erro de conexão com o servidor.");
-    console.error(erro);
   }
 });
