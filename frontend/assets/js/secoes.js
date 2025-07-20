@@ -68,7 +68,7 @@ function adicionarConteudo(topicId) {
 }
 
 function editarSecao(topicId) {
-  window.location.href = `editar-secao.html?topicId=${topicId}`;
+  window.location.href = `editar-secao.html?id=${topicId}`;
 }
 
 function irParaCriarSecao() {
