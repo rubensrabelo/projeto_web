@@ -24,6 +24,21 @@ class TopicController {
         }
     }
 
+    async getById(req, res) {
+        const { id } = req.params;
+        try {
+            const topic = await TopicService.getById(id);
+
+            if (!topic) {
+                return res.status(404).json({ error: "Topic not found." });
+            }
+
+            res.json(topic);
+        } catch (err) {
+            res.status(500).json({ error: "Error fetching topic." });
+        }
+    }
+
     async getByCourse(req, res) {
         const { courseId } = req.params;
         try {
