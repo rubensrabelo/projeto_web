@@ -19,7 +19,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     const resUser = await fetch("http://localhost:3000/users/me", {
       headers: { Authorization: `Bearer ${token}` }
     });
+
     if (!resUser.ok) throw new Error("Erro ao carregar usuário");
+
     const user = await resUser.json();
     document.getElementById("boasVindas").textContent = `Bem-vindo, ${user.firstname}!`;
 
@@ -55,19 +57,26 @@ async function carregarSecoes(courseId) {
           headers: { Authorization: `Bearer ${token}` }
         });
         const arquivos = resFiles.ok ? await resFiles.json() : [];
-        return {...secao, arquivos};
+        return { ...secao, arquivos };
       })
     );
 
+    const baseUrl = "http://localhost:3000/uploads/";
+
+    // Coloar no href abaixo: "dados-atividade.html?topicId=${secao._id}"
     container.innerHTML = secoesComArquivos.map(secao => {
       const visualizarLink = secao.type === "activity"
-        ? `<a href="dados-atividade.html?topicId=${secao._id}" class="visualizar-dados">📊 Visualizar Dados da Atividade</a>`
+        ? `<a href=# class="visualizar-dados">📊 Visualizar Dados da Atividade</a>`
         : "";
 
       const listaArquivos = secao.arquivos.length
         ? `<ul class="lista-arquivos">` +
           secao.arquivos.map(arq =>
-            `<li><a href="${arq.url}" target="_blank" rel="noopener noreferrer" title="${arq.name}">${arq.name}</a></li>`
+            `<li>
+              <a href="${baseUrl + arq.savedName}" download="${arq.name}" target="_blank" rel="noopener noreferrer" title="Clique para baixar">
+                ${arq.name} ⬇️
+              </a>
+            </li>`
           ).join("") +
           `</ul>`
         : `<p><i>Nenhum arquivo nesta seção.</i></p>`;

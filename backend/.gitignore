@@ -85,4 +85,4 @@ coverage/
 # Outros
 logs/
 .tern-port
-uploads/
+backend/src/uploads/
