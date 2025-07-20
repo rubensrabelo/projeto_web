@@ -50,7 +50,10 @@ async function carregarSecoes(courseId) {
     container.innerHTML = secoes.map(secao => `
       <div class="secao">
         <h3>${secao.title}</h3>
-        <button onclick="adicionarConteudo('${secao._id}')">Adicionar Conteúdo</button>
+        <div class="botoes-secao">
+          <button title="Adicionar Conteúdo" onclick="adicionarConteudo('${secao._id}')">📄</button>
+          <button title="Editar Seção" onclick="editarSecao('${secao._id}')">✏️</button>
+        </div>
       </div>
     `).join("");
 
@@ -62,6 +65,10 @@ async function carregarSecoes(courseId) {
 
 function adicionarConteudo(topicId) {
   window.location.href = `conteudo.html?topicId=${topicId}`;
+}
+
+function editarSecao(topicId) {
+  window.location.href = `editar-secao.html?topicId=${topicId}`;
 }
 
 function irParaCriarSecao() {
