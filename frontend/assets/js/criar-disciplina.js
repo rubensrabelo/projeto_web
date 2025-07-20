@@ -9,9 +9,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 
   try {
-    const payload = JSON.parse(atob(token.split('.')[1]));
-    const userId = payload.id || payload.userId;
-
     const res = await fetch("http://localhost:3000/users/me", {
       headers: {
         Authorization: `Bearer ${token}`
@@ -21,7 +18,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (!res.ok) throw new Error("Erro ao buscar usuário.");
 
     const user = await res.json();
-    const nome = user.name || "Professor";
+    const nome = user.firstname || "Professor";
 
     if (boasVindas) {
       boasVindas.textContent = `Bem-vindo, ${nome}!`;
