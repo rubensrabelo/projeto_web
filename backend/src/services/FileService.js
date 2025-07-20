@@ -1,8 +1,16 @@
 const File = require("../models/File");
 
 class FileService {
-  async addFile({ name, url, topicId }) {
-    return await File.create({ name, url, topic: topicId });
+  async uploadFile({ originalname, filename, topicId}) {
+    const fileData = {
+      name: originalname,
+      savedName: filename,
+      url: `/uploads/${filename}`,
+      topic: topicId
+    };
+
+    const newFile = new File(fileData);
+    return await newFile.save();
   }
 
   async getFilesByTopic(topicId) {

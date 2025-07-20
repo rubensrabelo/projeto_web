@@ -5,7 +5,7 @@ const upload = require("../middleware/upload");
 
 const router = express.Router();
 
-router.post("/:topicId", auth("teacher"), upload.single("file"), FileController.add);
+router.post("/:topicId", auth("teacher"), upload.single("file"), FileController.uploadFile);
 router.get("/:topicId", auth(), FileController.listByTopic);
 router.put("/update/:fileId", auth("teacher"), FileController.update);
 router.delete("/delete/:fileId", auth("teacher"), FileController.remove);
