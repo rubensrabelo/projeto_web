@@ -48,6 +48,18 @@
   font-size: 1.2rem;
 }
 
+.visualizar-dados {
+  font-size: 0.95rem;
+  color: #007bff;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.visualizar-dados:hover {
+  text-decoration: underline;
+  color: #0056b3;
+}
+
 .botoes-secao {
   display: flex;
   gap: 10px;

@@ -47,15 +47,22 @@ async function carregarSecoes(courseId) {
       return;
     }
 
-    container.innerHTML = secoes.map(secao => `
-      <div class="secao">
-        <h3>${secao.title}</h3>
-        <div class="botoes-secao">
-          <button title="Adicionar Conteúdo" onclick="adicionarConteudo('${secao._id}')">📄</button>
-          <button title="Editar Seção" onclick="editarSecao('${secao._id}')">✏️</button>
+    container.innerHTML = secoes.map(secao => {
+      const visualizarLink = secao.type === "activity"
+        ? `<a href="dados-atividade.html?topicId=${secao._id}" class="visualizar-dados">📊 Visualizar Dados da Atividade</a>`
+        : "";
+
+      return `
+        <div class="secao">
+          <h3>${secao.title}</h3>
+          ${visualizarLink}
+          <div class="botoes-secao">
+            <button title="Adicionar Conteúdo" onclick="adicionarConteudo('${secao._id}')">📄</button>
+            <button title="Editar Seção" onclick="editarSecao('${secao._id}')">✏️</button>
+          </div>
         </div>
-      </div>
-    `).join("");
+      `;
+    }).join("");
 
   } catch (err) {
     console.error(err);
