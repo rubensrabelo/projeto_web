@@ -47,12 +47,22 @@ async function carregarSecoes(courseId) {
       return;
     }
 
-    container.innerHTML = secoes.map(secao => `
-      <div class="secao">
-        <h3>${secao.title}</h3>
-        <button onclick="adicionarConteudo('${secao._id}')">Adicionar Conteúdo</button>
-      </div>
-    `).join("");
+    container.innerHTML = secoes.map(secao => {
+      const visualizarLink = secao.type === "activity"
+        ? `<a href="dados-atividade.html?topicId=${secao._id}" class="visualizar-dados">📊 Visualizar Dados da Atividade</a>`
+        : "";
+
+      return `
+        <div class="secao">
+          <h3>${secao.title}</h3>
+          ${visualizarLink}
+          <div class="botoes-secao">
+            <button title="Adicionar Conteúdo" onclick="adicionarConteudo('${secao._id}')">📄</button>
+            <button title="Editar Seção" onclick="editarSecao('${secao._id}')">✏️</button>
+          </div>
+        </div>
+      `;
+    }).join("");
 
   } catch (err) {
     console.error(err);
@@ -62,6 +72,10 @@ async function carregarSecoes(courseId) {
 
 function adicionarConteudo(topicId) {
   window.location.href = `conteudo.html?topicId=${topicId}`;
+}
+
+function editarSecao(topicId) {
+  window.location.href = `editar-secao.html?id=${topicId}`;
 }
 
 function irParaCriarSecao() {

@@ -11,6 +11,10 @@ class TopicService {
         });
     }
 
+    async getById(id) {
+        return await Topic.findById(id);
+    }
+
     async getByCourse(courseId) {
         return await Topic.find({ course: courseId });
     }
