@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Adicionar Arquivo</title>
+  <link rel="stylesheet" href="../css/geral.css" />
+  <link rel="stylesheet" href="../css/adicionar-arquivo.css" />
+</head>
+<body>
+  <div class="layout">
+    <nav class="sidebar">
+      <h3>Menu</h3>
+      <a href="home.html">Home</a>
+      <a href="pesquisar-disciplina.html">Pesquisar Disciplina</a>
+      <a href="perfil.html">Editar Perfil</a>
+      <button onclick="logout()">Sair</button>
+    </nav>
+
+    <main class="content">
+      <h2 id="boasVindas">Bem-vindo!</h2>
+
+      <div class="form-container">
+        <h2>Adicionar Arquivo à Seção</h2>
+        <form id="formArquivo">
+          <input type="text" id="nomeArquivo" name="name" placeholder="Nome do Arquivo *" required />
+          <input type="file" id="arquivo" name="file" accept=".pdf,.doc,.docx,.png,.jpg,.jpeg,.mp4,.zip" required />
+          <button type="submit">Enviar Arquivo</button>
+        </form>
+      </div>
+    </main>
+  </div>
+
+  <script src="../js/adicionar-arquivo.js"></script>
+</body>
+</html>

@@ -19,6 +19,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const resUser = await fetch("http://localhost:3000/users/me", {
       headers: { Authorization: `Bearer ${token}` }
     });
+    if (!resUser.ok) throw new Error("Erro ao carregar usuário");
     const user = await resUser.json();
     document.getElementById("boasVindas").textContent = `Bem-vindo, ${user.firstname}!`;
 
@@ -40,6 +41,7 @@ async function carregarSecoes(courseId) {
       headers: { Authorization: `Bearer ${token}` }
     });
 
+    if (!res.ok) throw new Error("Erro ao buscar seções");
     const secoes = await res.json();
 
     if (!secoes.length) {
@@ -47,15 +49,34 @@ async function carregarSecoes(courseId) {
       return;
     }
 
-    container.innerHTML = secoes.map(secao => {
+    const secoesComArquivos = await Promise.all(
+      secoes.map(async (secao) => {
+        const resFiles = await fetch(`http://localhost:3000/files/${secao._id}`, {
+          headers: { Authorization: `Bearer ${token}` }
+        });
+        const arquivos = resFiles.ok ? await resFiles.json() : [];
+        return {...secao, arquivos};
+      })
+    );
+
+    container.innerHTML = secoesComArquivos.map(secao => {
       const visualizarLink = secao.type === "activity"
         ? `<a href="dados-atividade.html?topicId=${secao._id}" class="visualizar-dados">📊 Visualizar Dados da Atividade</a>`
         : "";
+
+      const listaArquivos = secao.arquivos.length
+        ? `<ul class="lista-arquivos">` +
+          secao.arquivos.map(arq =>
+            `<li><a href="${arq.url}" target="_blank" rel="noopener noreferrer" title="${arq.name}">${arq.name}</a></li>`
+          ).join("") +
+          `</ul>`
+        : `<p><i>Nenhum arquivo nesta seção.</i></p>`;
 
       return `
         <div class="secao">
           <h3>${secao.title}</h3>
           ${visualizarLink}
+          ${listaArquivos}
           <div class="botoes-secao">
             <button title="Adicionar Conteúdo" onclick="adicionarConteudo('${secao._id}')">📄</button>
             <button title="Editar Seção" onclick="editarSecao('${secao._id}')">✏️</button>
@@ -66,12 +87,12 @@ async function carregarSecoes(courseId) {
 
   } catch (err) {
     console.error(err);
-    container.innerHTML = "<p>Erro ao carregar seções.</p>";
+    container.innerHTML = "<p>Erro ao carregar seções e arquivos.</p>";
   }
 }
 
 function adicionarConteudo(topicId) {
-  window.location.href = `conteudo.html?topicId=${topicId}`;
+  window.location.href = `adicionar-arquivo.html?topicId=${topicId}`;
 }
 
 function editarSecao(topicId) {
