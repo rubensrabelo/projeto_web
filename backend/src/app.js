@@ -19,6 +19,7 @@ app.use("/auth", authRouter);
 app.use("/users", userRouter);
 app.use("/courses", courseRouter);
 app.use("/topics", topicRouter);
+app.use("/uploads", express.static("uploads"));
 
 mongoose.connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
