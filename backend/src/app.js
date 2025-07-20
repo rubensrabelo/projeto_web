@@ -7,6 +7,7 @@ const authRouter = require("./routes/authRouter");
 const userRouter = require("./routes/userRouter");
 const courseRouter = require("./routes/courseRouter");
 const topicRouter = require("./routes/topicRouter");
+const fileRouter = require("./routes/fileRouter");
 
 dotenv.config();
 
@@ -19,6 +20,8 @@ app.use("/auth", authRouter);
 app.use("/users", userRouter);
 app.use("/courses", courseRouter);
 app.use("/topics", topicRouter);
+app.use("/files", fileRouter);
+
 app.use("/uploads", express.static("uploads"));
 
 mongoose.connect(process.env.MONGO_URI, {
