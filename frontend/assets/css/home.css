@@ -15,6 +15,8 @@
   border: none;
   border-radius: 6px;
   cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
 }
 
 .topo-conteudo button:hover {
@@ -33,9 +35,24 @@
   border: 1px solid #ddd;
   border-radius: 10px;
   width: 260px;
-  padding: 20px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   text-align: left;
+  overflow: hidden;
+}
+
+.disciplina a.link-disciplina {
+  display: block;
+  padding: 20px;
+  color: inherit;
+  text-decoration: none;
+  height: 100%;
+  box-sizing: border-box;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+
+.disciplina a.link-disciplina:hover {
+  background-color: #f0f8ff;
 }
 
 .disciplina h3 {
@@ -44,6 +61,7 @@
 }
 
 .disciplina p {
-  margin: 5px 0;
+  margin: 5px 0 0 0;
   color: #555;
+  font-size: 0.95rem;
 }
