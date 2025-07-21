@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>TL - DISCIPLINA - ACOMPANHAR ENTREGA</title>
+    <link rel="stylesheet" href="../css/geral.css" />
+    <link rel="stylesheet" href="../css/disciplina-acompanhar-entrega.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+    <div class="layout">
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <i class="fas fa-graduation-cap"></i>
+            </div>
+            <ul class="sidebar-menu">
+                <li><a href="config.html">Configurações</a></li>
+                <li><a href="criar-disciplina.html">Criar Disciplina</a></li>
+                <li><a href="criar-secao.html">Criar Sessão</a></li>
+                <li><a href="perfil.html">Editar Perfil</a></li>
+                <li class="active"><a href="home.html">Home</a></li>
+                <li><a href="pesquisar-disciplina.html">Disciplinas</a></li>
+                <li><a href="disciplina-detalhe-visualizacao-envio.html">Visualizar Envio</a></li>
+            </ul>
+
+            <div class="sidebar-footer">
+                <a href="#" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Sair</a>
+                <a href="#"><i class="fas fa-cog"></i></a>
+            </div>
+        </nav>
+
+        <main class="content">
+            <header class="content-header">
+                <div class="user-info">
+                    <i class="fas fa-user-circle"></i> Olá, Professor(a)!
+                </div>
+            </header>
+
+            <div class="page-header-with-back">
+                <button class="back-button" onclick="window.history.back()">
+                    <i class="fas fa-chevron-left"></i> Acompanhar entregas
+                </button>
+            </div>
+
+            <div class="main-content-card">
+                <h2 class="card-title">Status de envio:</h2>
+
+                <div class="deliveries-table-container">
+                    <table class="deliveries-table">
+                        <thead>
+                            <tr>
+                                <th>Nome:</th>
+                                <th>Status de avaliação:</th>
+                                <th>Arquivo enviado:</th>
+                                <th>Comentário:</th>
+                                <th>Nota final:</th>
+                            </tr>
+                        </thead>
+                        <tbody id="deliveriesList">
+                            <tr>
+                                <td>João Silva</td>
+                                <td>Não avaliado</td>
+                                <td><a href="#" class="file-link">tarefaSS01.pdf</a></td>
+                                <td>Nenhum comentário</td>
+                                <td class="grade-cell">
+                                    <span>0/10</span>
+                                    <button class="edit-grade-button"><i class="fas fa-pencil-alt"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Maria Souza</td>
+                                <td>Avaliado</td>
+                                <td><a href="#" class="file-link">projetoFisica.pdf</a></td>
+                                <td>Ótimo trabalho!</td>
+                                <td class="grade-cell">
+                                    <input type="number" class="grade-input" value="8" min="0" max="10"
+                                        style="display: none;">
+                                    <span class="grade-value">8/10</span>
+                                    <button class="edit-grade-button"><i class="fas fa-pencil-alt"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="form-actions-bottom-right">
+                    <button type="submit" class="save-button" form="gradeForm">Salvar</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../js/disciplina-acompanhar-entrega.js"></script>
+</body>
+
+</html>

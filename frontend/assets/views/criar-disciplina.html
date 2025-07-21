@@ -1,32 +1,106 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
   <meta charset="UTF-8" />
-  <title>Criar Disciplina</title>
-  <link rel="stylesheet" href="../css/geral.css">
-  <link rel="stylesheet" href="../css/criar-disciplina.css">
+  <title>TL - DISCIPLINA - CRIAR</title>
+  <link rel="stylesheet" href="../css/geral.css" />
+  <link rel="stylesheet" href="../css/criar-disciplina.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
+
 <body>
   <div class="layout">
     <nav class="sidebar">
-      <h3>Menu</h3>
-      <a href="home.html">Home</a>
-      <a href="pesquisar-disciplina.html">Pesquisar Disciplina</a>
-      <a href="perfil.html">Editar Perfil</a>
-      <button onclick="logout()">Sair</button>
+      <div class="sidebar-header">
+        <i class="fas fa-graduation-cap"></i>
+      </div>
+      <ul class="sidebar-menu">
+        <li><a href="config.html">Configurações</a></li>
+        <li><a href="criar-disciplina.html">Criar Disciplina</a></li>
+        <li><a href="criar-secao.html">Criar Sessão</a></li>
+        <li><a href="perfil.html">Editar Perfil</a></li>
+        <li class="active"><a href="home.html">Home</a></li>
+        <li><a href="pesquisar-disciplina.html">Disciplinas</a></li>
+        <li><a href="disciplina-detalhe-visualizacao-envio.html">Visualizar Envio</a></li>
+      </ul>
+
+      <div class="sidebar-footer">
+        <a href="#" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Sair</a>
+        <a href="#"><i class="fas fa-cog"></i></a>
+      </div>
     </nav>
 
     <main class="content">
-      <h2 id="boasVindas">Bem-vindo!</h2>
+      <header class="content-header">
+        <div class="user-info">
+          <i class="fas fa-user-circle"></i> Olá, Professor(a)!
+        </div>
+      </header>
 
-      <div class="form-container">
-        <h2>Nova Disciplina</h2>
-        <form id="formDisciplina">
-          <input type="text" id="nome" placeholder="Nome da disciplina *" required />
-          <textarea id="descricao" placeholder="Descrição (opcional)"></textarea>
-          <input type="text" id="horario" placeholder="Horário das aulas (ex: Seg, 08h - 10h)" />
-          <input type="number" id="quantidade" placeholder="Quantidade de aulas" min="1" />
-          <button type="submit">Criar</button>
+      <div class="page-header-with-back">
+        <button class="back-button" onclick="window.history.back()">
+          <i class="fas fa-chevron-left"></i> Criar disciplina:
+        </button>
+      </div>
+
+      <div class="main-content-card">
+        <h2 class="card-title preferences-title">Preferências</h2>
+        <form id="createDisciplineForm" class="create-discipline-form">
+          <div class="form-row">
+            <div class="form-group large-width">
+              <label for="disciplineName">Nome:</label>
+              <input type="text" id="disciplineName" name="disciplineName" placeholder="Nome da disciplina..." required>
+            </div>
+            <div class="form-group small-width">
+              <label for="weeklyClasses">Quantidade de aulas (semanais):</label>
+              <select id="weeklyClasses" name="weeklyClasses">
+                <option value="">Selecione...</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="disciplineCode">Código da disciplina:</label>
+            <select id="disciplineCode" name="disciplineCode">
+              <option value="">Selecione...</option>
+              <option value="T01">T-01</option>
+              <option value="T02">T-02</option>
+              <option value="T03">T-03</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="selectProfessor">Selecionar professor:</label>
+            <select id="selectProfessor" name="selectProfessor">
+              <option value="">Selecione...</option>
+              <option value="prof1">Professor João</option>
+              <option value="prof2">Professor Maria</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="professorEmail">Email do professor:</label>
+            <input type="email" id="professorEmail" name="professorEmail" placeholder="Email...">
+          </div>
+
+          <div class="form-group">
+            <label for="classSchedule">Horário da aula:</label>
+            <select id="classSchedule" name="classSchedule">
+              <option value="">Selecione...</option>
+              <option value="seg-qua-08-10">Seg, 08 as 10</option>
+              <option value="ter-qui-14-16">Ter, 14 as 16</option>
+            </select>
+          </div>
+
+          <div class="form-actions-bottom-right">
+            <button type="submit" class="save-button">Salvar</button>
+          </div>
         </form>
       </div>
     </main>
@@ -34,4 +108,5 @@
 
   <script src="../js/criar-disciplina.js"></script>
 </body>
+
 </html>

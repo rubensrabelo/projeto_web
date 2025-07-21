@@ -1,120 +1,202 @@
-.content {
-  flex: 1;
-  padding: 40px;
-  text-align: center;
-}
+/* sessao.css */
 
-.topo-conteudo {
+/* Reutiliza variáveis de geral.css */
+
+/* === Cabeçalho da Página com Botão de Voltar (Reutilizado) === */
+.page-header-with-back {
+  display: flex;
+  align-items: center;
   margin-bottom: 30px;
-  display: flex;
-  justify-content: center;
-  gap: 10px;
 }
 
-.topo-conteudo button {
+.page-header-with-back .back-button {
+  background-color: var(--white);
+  border: 1px solid var(--medium-gray-border);
+  border-radius: 25px; /* Formato oval */
+  width: auto;
   padding: 10px 20px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-}
-
-.topo-conteudo button:hover {
-  background-color: #0056b3;
-}
-
-.secoes-container {
   display: flex;
-  flex-direction: column;
-  gap: 20px;
-  max-width: 900px;
-  margin: 0 auto;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2em;
+  color: var(--dark-gray-text); /* Cor do texto "Criar Sessão" */
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.page-header-with-back .back-button:hover {
+  background-color: var(--light-gray-bg);
+  transform: translateX(-3px);
+}
+
+.page-header-with-back .back-button i {
+  font-size: 1.1em;
+  margin-right: 10px;
+  color: var(--primary-blue);
+}
+
+/* === Card Principal de Conteúdo (Reutilizado) === */
+.main-content-card {
+  background-color: var(--white);
+  border-radius: 8px;
+  box-shadow: var(--card-shadow);
+  padding: 30px;
+  margin-top: 0;
+}
+
+.main-content-card .card-title {
+  font-size: 1.8em;
+  color: var(--dark-gray-text);
+  margin-top: 0;
+  margin-bottom: 25px;
   text-align: left;
 }
 
-.secao {
-  background-color: #fff;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  padding: 20px 25px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
+/* Título "Preferências" na imagem */
+.main-content-card .preferences-title {
+    display: flex;
+    align-items: center;
+    font-size: 1.8em;
+    color: var(--dark-gray-text);
+    margin-top: 0;
+    margin-bottom: 25px;
+    text-align: left;
+    border-bottom: 1px solid var(--medium-gray-border);
+    padding-bottom: 10px;
 }
 
-.secao h3 {
-  margin: 0 0 10px 0;
-  font-size: 1.4rem;
-  color: #222;
+.main-content-card .preferences-title .fas { /* Se adicionar um ícone */
+    font-size: 1.2em;
+    color: var(--primary-blue);
+    margin-right: 10px;
 }
 
-.visualizar-dados {
-  font-size: 0.95rem;
-  color: #007bff;
-  text-decoration: none;
-  font-weight: 500;
+/* === Formulário de Criação de Sessão === */
+.create-session-form { /* CLASSE AJUSTADA AQUI */
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
-.visualizar-dados:hover {
-  text-decoration: underline;
-  color: #0056b3;
+.create-session-form .form-row {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
 }
 
-.botoes-secao {
-  display: flex;
-  gap: 10px;
-  margin-top: 10px;
+.create-session-form .form-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    min-width: 200px;
 }
 
-.botoes-secao button {
-  font-size: 1.4rem;
-  padding: 6px 14px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
+.create-session-form .form-group.half-width {
+    flex: 1;
 }
 
-.botoes-secao button:hover {
-  background-color: #0056b3;
+.create-session-form label {
+    font-size: 1em;
+    color: var(--dark-gray-text);
+    margin-bottom: 5px;
+    font-weight: bold;
 }
 
-.lista-arquivos {
-  list-style: none;
-  padding-left: 0;
-  margin: 10px 0 0 0;
-  max-height: 180px;
-  overflow-y: auto;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  background-color: #f9f9f9;
+.create-session-form input[type="text"],
+.create-session-form input[type="number"],
+.create-session-form input[type="email"],
+.create-session-form input[type="date"],
+.create-session-form select,
+.create-session-form textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--medium-gray-border);
+  border-radius: 5px;
+  font-size: 0.95em;
+  background-color: var(--white);
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
 }
 
-.lista-arquivos li {
-  padding: 8px 12px;
-  border-bottom: 1px solid #ddd;
+.create-session-form input:focus,
+.create-session-form select:focus,
+.create-session-form textarea:focus {
+  border-color: var(--primary-blue);
+  outline: none;
 }
 
-.lista-arquivos li:last-child {
-  border-bottom: none;
+/* === Estilo para a área de Dropzone de Arquivos === */
+.file-upload-dropzone {
+    border: 2px dashed var(--medium-gray-border);
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    min-height: 100px;
 }
 
-.lista-arquivos a {
-  text-decoration: none;
-  color: #0056b3;
-  font-weight: 600;
-  display: inline-block;
-  max-width: 100%;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+.file-upload-dropzone:hover {
+    background-color: var(--light-gray-bg);
+    border-color: var(--primary-blue);
 }
 
-.lista-arquivos a:hover {
-  text-decoration: underline;
+.file-upload-dropzone p {
+    margin: 0;
+    color: #666;
+    font-size: 1em;
+}
+
+.file-upload-dropzone .fas.fa-upload {
+    font-size: 2em;
+    color: var(--primary-blue);
+}
+
+/* === Estilo para Toggle Switch (Reutilizado de config.css) === */
+.create-session-form .toggle-group { /* CLASSE AJUSTADA AQUI */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding-bottom: 0;
+    border-bottom: none;
+    margin-top: 10px;
+}
+
+.create-session-form .toggle-group label:first-child { /* A label de texto */
+    margin-bottom: 0;
+    flex-shrink: 0;
+    margin-right: 15px;
+}
+
+/* === Botão Salvar (Posicionado no canto inferior direito) === */
+.form-actions-bottom-right {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid var(--medium-gray-border);
+}
+
+.form-actions-bottom-right .save-button {
+    padding: 12px 40px;
+    font-size: 1.2em;
+    background-color: var(--primary-blue);
+    color: var(--white);
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.form-actions-bottom-right .save-button:hover {
+    background-color: #121A5E;
 }

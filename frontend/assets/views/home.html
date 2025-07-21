@@ -2,28 +2,50 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8" />
-  <title>Minhas Disciplinas</title>
+  <title>TL - HOME</title>
   <link rel="stylesheet" href="../css/geral.css" />
   <link rel="stylesheet" href="../css/home.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
   <div class="layout">
     <nav class="sidebar">
-      <h3>Menu</h3>
-      <a href="home.html">Home</a>
-      <a href="pesquisar-disciplina.html">Pesquisar Disciplina</a>
-      <a href="perfil.html">Editar Perfil</a>
-      <button onclick="logout()">Sair</button>
+      <div class="sidebar-header">
+        <i class="fas fa-graduation-cap"></i>
+      </div>
+  <ul class="sidebar-menu">
+  <li><a href="config.html">Configurações</a></li>
+  <li><a href="criar-disciplina.html">Criar Disciplina</a></li>
+  <li><a href="criar-secao.html">Criar Sessão</a></li>
+  <li><a href="perfil.html">Editar Perfil</a></li>
+  <li class="active"><a href="home.html">Home</a></li>
+  <li><a href="pesquisar-disciplina.html">Disciplinas</a></li>
+  <li><a href="disciplina-detalhe-visualizacao-envio.html">Visualizar Envio</a></li>
+</ul>
+
+      <div class="sidebar-footer">
+        <a href="#" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Sair</a>
+        <a href="config.html"><i class="fas fa-cog"></i></a> </div>
     </nav>
 
     <main class="content">
-      <h2 id="boasVindas">Bem-vindo!</h2>
+      <header class="content-header">
+        <div class="user-info">
+          <i class="fas fa-user-circle"></i> <span id="boasVindas">Olá, Aluno(a)!</span>
+        </div>
+      </header>
 
-      <div class="topo-conteudo">
-        <button onclick="window.location.href='criar-disciplina.html'">Nova Disciplina</button>
-      </div>
+      <div class="main-card">
+        <h2 class="card-title">Sitask</h2>
+        </div>
 
-      <div id="listaDisciplinas" class="disciplinas-container">
+      <div class="disciplinas-section">
+        <h3 class="section-title">Suas Disciplinas:</h3>
+        <div id="listaDisciplinas" class="disciplinas-grid">
+          </div>
+        <div class="view-all">
+          <a href="#">Visualizar todas as disciplinas</a>
+        </div>
       </div>
     </main>
   </div>

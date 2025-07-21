@@ -2,33 +2,78 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8" />
-  <title>Editar Perfil</title>
+  <title>TL - Meu Perfil</title>
   <link rel="stylesheet" href="../css/geral.css" />
   <link rel="stylesheet" href="../css/perfil.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
   <div class="layout">
     <nav class="sidebar">
-      <h3>Menu</h3>
-      <a href="home.html">Home</a>
-      <a href="pesquisar-disciplina.html">Pesquisar Disciplina</a>
-      <a href="perfil.html">Editar Perfil</a>
-      <button onclick="logout()">Sair</button>
+      <div class="sidebar-header">
+        <i class="fas fa-graduation-cap"></i>
+      </div>
+<ul class="sidebar-menu">
+  <li><a href="config.html">Configurações</a></li>
+  <li><a href="criar-disciplina.html">Criar Disciplina</a></li>
+  <li><a href="criar-secao.html">Criar Sessão</a></li>
+  <li><a href="perfil.html">Editar Perfil</a></li>
+  <li class="active"><a href="home.html">Home</a></li>
+  <li><a href="pesquisar-disciplina.html">Disciplinas</a></li>
+  <li><a href="disciplina-detalhe-visualizacao-envio.html">Visualizar Envio</a></li>
+</ul>
+
+      <div class="sidebar-footer">
+        <a href="#" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Sair</a>
+        <a href="#"><i class="fas fa-cog"></i></a>
+      </div>
     </nav>
 
     <main class="content">
-      <h2 id="boasVindas">Bem-vindo!</h2>
+      <header class="content-header">
+        <div class="user-info">
+          <i class="fas fa-user-circle"></i> Olá, Aluno(a)! </div>
+      </header>
 
-      <div class="form-container">
-        <h2>Editar Perfil</h2>
-        <form id="formPerfil">
-          <input type="text" id="firstname" placeholder="Primeiro nome" required />
-          <input type="text" id="lastname" placeholder="Sobrenome" required />
-          <input type="email" id="email" placeholder="Email" required />
-          <input type="password" id="password" placeholder="Nova senha (opcional)" />
-          <button type="submit">Salvar Alterações</button>
+      <div class="profile-card">
+        <h2 class="card-title">Meu Perfil</h2>
+
+        <form id="formPerfil" class="profile-form">
+          <div class="form-group">
+            <label for="firstname">Primeiro nome:</label>
+            <input type="text" id="firstname" name="firstname" required>
+          </div>
+
+          <div class="form-group">
+            <label for="lastname">Sobrenome:</label>
+            <input type="text" id="lastname" name="lastname" required>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" readonly> </div>
+
+          <div class="form-group">
+            <label for="oldPassword">Senha Antiga (opcional):</label>
+            <input type="password" id="oldPassword" name="oldPassword">
+          </div>
+
+          <div class="form-group">
+            <label for="password">Nova Senha (opcional):</label>
+            <input type="password" id="password" name="password">
+          </div>
+
+          <div class="form-group">
+            <label for="confirmNewPassword">Confirmar Nova Senha:</label>
+            <input type="password" id="confirmNewPassword" name="confirmNewPassword">
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="save-button">Salvar Alterações</button>
+            <button type="button" class="cancel-button" onclick="window.history.back()">Cancelar</button>
+          </div>
         </form>
-       </div>
+      </div>
     </main>
   </div>
 

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>TL - CONFIG</title>
+    <link rel="stylesheet" href="../css/geral.css" />
+    <link rel="stylesheet" href="../css/config.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+    <div class="layout">
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <i class="fas fa-graduation-cap"></i>
+            </div>
+            <ul class="sidebar-menu">
+                <li><a href="config.html">Configurações</a></li>
+                <li><a href="criar-disciplina.html">Criar Disciplina</a></li>
+                <li><a href="criar-secao.html">Criar Sessão</a></li>
+                <li><a href="perfil.html">Editar Perfil</a></li>
+                <li class="active"><a href="home.html">Home</a></li>
+                <li><a href="pesquisar-disciplina.html">Disciplinas</a></li>
+                <li><a href="disciplina-detalhe-visualizacao-envio.html">Visualizar Envio</a></li>
+            </ul>
+
+            <div class="sidebar-footer">
+                <a href="#" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Sair</a>
+                <a href="#"><i class="fas fa-cog"></i></a>
+            </div>
+        </nav>
+
+        <main class="content">
+            <header class="content-header">
+                <div class="user-info">
+                    <i class="fas fa-user-circle"></i> Olá, Aluno(a)!
+                </div>
+            </header>
+
+            <div class="config-layout">
+                <div class="config-sidebar">
+                    <button class="back-button" onclick="window.history.back()">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <ul class="config-menu">
+                        <li><a href="#" data-section="perfil">Configurações de perfil</a></li>
+                        <li class="active"><a href="#" data-section="preferencias">Configurações de preferências</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="config-content-area">
+                    <div id="perfil-section" class="profile-card config-section">
+                        <h2 class="card-title">Perfil</h2>
+                        <div class="profile-avatar-section">
+                            <div class="profile-avatar">
+                                <i class="fas fa-user-circle"></i>
+                                <button class="edit-avatar-button"><i class="fas fa-camera"></i></button>
+                            </div>
+                        </div>
+
+                        <form id="profileConfigForm" class="profile-form">
+                            <div class="form-row">
+                                <div class="form-group half-width">
+                                    <label for="firstName">Primeiro nome:</label>
+                                    <input type="text" id="firstName" name="firstName" placeholder="Nome...">
+                                </div>
+                                <div class="form-group half-width">
+                                    <label for="lastName">Sobrenome:</label>
+                                    <input type="text" id="lastName" name="lastName" placeholder="Nome...">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">Email:</label>
+                                <input type="email" id="email" name="email" placeholder="Email..." readonly>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group half-width">
+                                    <label for="estado">Estado:</label>
+                                    <input type="text" id="estado" name="estado" placeholder="Estado...">
+                                </div>
+                                <div class="form-group half-width">
+                                    <label for="cidade">Cidade:</label>
+                                    <input type="text" id="cidade" name="cidade" placeholder="Cidade...">
+                                </div>
+                            </div>
+
+                            <div class="form-actions-bottom">
+                                <button type="button" class="cancel-button"
+                                    onclick="window.history.back()">Cancelar</button>
+                                <button type="submit" class="save-button">Salvar</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div id="preferencias-section" class="preferences-card config-section active-section">
+                        <h2 class="card-title"><i class="fas fa-cogs preferences-icon"></i> Preferências</h2>
+
+                        <form id="preferencesForm" class="preferences-form">
+                            <div class="preference-group">
+                                <div class="preference-item">
+                                    <label for="theme">Tema:</label>
+                                    <select id="theme" name="theme">
+                                        <option value="claro">Claro</option>
+                                        <option value="escuro">Escuro</option>
+                                    </select>
+                                </div>
+                                <div class="preference-item">
+                                    <label for="language">Idioma:</label>
+                                    <select id="language" name="language">
+                                        <option value="pt-br">Português</option>
+                                        <option value="en">English</option>
+                                    </select>
+                                </div>
+                                <div class="preference-item">
+                                    <label for="fontSize">Tamanho da fonte:</label>
+                                    <select id="fontSize" name="fontSize">
+                                        <option value="pequeno">Pequeno</option>
+                                        <option value="medio">Médio</option>
+                                        <option value="grande">Grande</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="preference-group toggle-group">
+                                <div class="preference-item toggle-item">
+                                    <label for="floatingTips">Ativar dicas flutuantes:</label>
+                                    <label class="switch">
+                                        <input type="checkbox" id="floatingTips" name="floatingTips">
+                                        <span class="slider round"></span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <h2 class="card-title"><i class="fas fa-bell preferences-icon"></i> Notificações</h2>
+                            <div class="preference-group toggle-group">
+                                <div class="preference-item toggle-item">
+                                    <label for="emailNotifications">Notificações por email:</label>
+                                    <label class="switch">
+                                        <input type="checkbox" id="emailNotifications" name="emailNotifications">
+                                        <span class="slider round"></span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <h2 class="card-title"><i class="fas fa-tasks preferences-icon"></i> Tarefas</h2>
+                            <div class="preference-group">
+                                <div class="preference-item">
+                                    <label for="taskViewPattern">Padrão de visualização de tarefas:</label>
+                                    <select id="taskViewPattern" name="taskViewPattern">
+                                        <option value="lista">Lista</option>
+                                        <option value="kanban">Kanban</option>
+                                    </select>
+                                </div>
+                                <div class="preference-item">
+                                    <label for="orderBy">Ordenar por:</label>
+                                    <select id="orderBy" name="orderBy">
+                                        <option value="data">Data</option>
+                                        <option value="prioridade">Prioridade</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <h2 class="card-title"><i class="fas fa-clock preferences-icon"></i> Horas</h2>
+                            <div class="preference-group">
+                                <div class="preference-item">
+                                    <label for="timezone">Fuso horário:</label>
+                                    <select id="timezone" name="timezone">
+                                        <option value="gmt-3"> (GMT-3:00) Brasília</option>
+                                        <option value="gmt-4"> (GMT-4:00) Manaus</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </form>
+
+                        <div class="form-actions-bottom">
+                            <button type="button" class="cancel-button"
+                                onclick="window.history.back()">Cancelar</button>
+                            <button type="submit" form="preferencesForm" class="save-button">Salvar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../js/config.js"></script>
+</body>
+
+</html>

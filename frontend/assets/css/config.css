@@ -1,0 +1,411 @@
+/* config.css */
+
+/* Reutiliza variáveis de geral.css */
+/* Espera que geral.css defina:
+   --primary-blue: #1A237E (Azul escuro principal)
+   --white: #ffffff (Branco)
+   --light-gray-bg: #F0F2F5 (Cinza claro para fundo da área de conteúdo)
+   --dark-gray-text: #333 (Cinza escuro para textos)
+   --medium-gray-border: #ddd (Cinza médio para bordas)
+   --card-shadow: 0 4px 8px rgba(0, 0, 0, 0.1) (Sombra padrão para cards)
+   --card-shadow-hover: 0 6px 12px rgba(0, 0, 0, 0.15) (Sombra para hover de cards)
+   --light-gray-hover: #bbb (Hover para botões cinza)
+*/
+
+
+/* === Layout Principal da Área de Configurações === */
+.config-layout {
+  display: flex;
+  gap: 30px; /* Espaço entre a sidebar de config e o conteúdo */
+  margin-top: 30px;
+  flex-wrap: wrap; /* Permite quebrar linha em telas menores */
+  width: 100%; /* Garante que ocupe a largura disponível no .content */
+}
+
+/* === Sidebar de Configurações (coluna esquerda dentro da área de conteúdo) === */
+.config-sidebar {
+  flex-basis: 250px; /* Largura inicial */
+  flex-shrink: 0; /* Impede que encolha */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Alinha o conteúdo à esquerda */
+  padding-top: 10px;
+}
+
+.config-sidebar .back-button {
+  background-color: var(--white);
+  border: 1px solid var(--medium-gray-border);
+  border-radius: 50%; /* Torna-o circular */
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2em;
+  color: var(--primary-blue); /* Cor do ícone em azul principal */
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin-bottom: 30px;
+}
+
+.config-sidebar .back-button:hover {
+  background-color: var(--light-gray-bg); /* Fundo cinza claro no hover */
+  transform: translateX(-3px);
+}
+
+.config-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%; /* Ocupa a largura total do config-sidebar */
+}
+
+.config-menu li {
+  margin-bottom: 10px;
+}
+
+.config-menu a {
+  display: block;
+  background-color: var(--white); /* Fundo branco para os itens de menu */
+  color: var(--dark-gray-text); /* Texto cinza escuro */
+  text-decoration: none;
+  padding: 15px 20px;
+  border-radius: 8px;
+  box-shadow: var(--card-shadow);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  font-size: 1.1em;
+}
+
+.config-menu a:hover {
+  background-color: var(--light-gray-bg); /* Fundo cinza claro no hover */
+  box-shadow: var(--card-shadow-hover);
+}
+
+.config-menu li.active a {
+  background-color: var(--primary-blue); /* Fundo azul principal para item ativo */
+  color: var(--white); /* Texto branco para item ativo */
+  box-shadow: var(--card-shadow-hover);
+}
+
+/* === Área de Conteúdo das Configurações (coluna direita) === */
+.config-content-area {
+  flex-grow: 1; /* Ocupa o espaço restante */
+  min-width: 400px; /* Garante que o card não fique muito pequeno */
+  /* Remove background-color e shadow daqui, pois os cards internos já têm */
+}
+
+.config-section {
+  display: none; /* Oculta todas as seções por padrão */
+  /* background-color e shadow já são definidos nos cards internos (.profile-card, .preferences-card) */
+  width: 100%; /* Garante que ocupe a largura total do config-content-area */
+}
+
+.config-section.active-section {
+  display: block; /* Mostra a seção ativa */
+}
+
+/* === Estilos para o Card de Perfil dentro das configurações === */
+.profile-card {
+  background-color: var(--white);
+  border-radius: 8px;
+  box-shadow: var(--card-shadow);
+  padding: 30px;
+  margin-top: 0; /* Remove margem superior extra aqui, pois o .config-layout já define */
+}
+
+.profile-card .card-title {
+  font-size: 2em;
+  color: var(--dark-gray-text);
+  margin-top: 0;
+  margin-bottom: 25px;
+  text-align: left; /* Título alinhado à esquerda como na imagem */
+}
+
+.profile-avatar-section {
+  text-align: center;
+  margin-bottom: 30px;
+  position: relative;
+}
+
+.profile-avatar {
+  display: inline-block;
+  position: relative;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background-color: var(--primary-blue); /* Círculo do avatar em azul principal */
+  color: var(--white); /* Ícone dentro do círculo em branco */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 80px; /* Tamanho do ícone de usuário */
+  overflow: hidden;
+}
+
+.profile-avatar .fas.fa-user-circle {
+  font-size: 1em; /* Ajusta o tamanho do ícone dentro do círculo */
+}
+
+.edit-avatar-button {
+  position: absolute;
+  bottom: 0;
+  right: 15px; /* Ajuste para centralizar visualmente */
+  background-color: var(--primary-blue); /* Fundo do botão em azul principal */
+  color: var(--white); /* Ícone em branco */
+  border: 3px solid var(--white); /* Borda branca como na imagem */
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1em;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease;
+}
+
+.edit-avatar-button:hover {
+  background-color: #121A5E; /* Tom mais escuro do azul principal */
+}
+
+/* Formulário de Perfil (usado tanto no perfil.html quanto aqui) */
+.profile-form .form-row {
+  display: flex;
+  gap: 20px; /* Espaço entre as colunas */
+  margin-bottom: 20px;
+  flex-wrap: wrap; /* Permite quebrar linha em telas pequenas */
+}
+
+.profile-form .form-group { /* Cada grupo de label + input */
+  margin-bottom: 20px;
+}
+
+.profile-form .form-group.half-width {
+  flex: 1; /* Ocupa metade da largura disponível */
+  min-width: 180px; /* Garante um tamanho mínimo para as colunas */
+}
+
+.profile-form label {
+  display: block;
+  font-size: 1em;
+  color: var(--dark-gray-text);
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.profile-form input[type="text"],
+.profile-form input[type="email"],
+.profile-form input[type="password"],
+.profile-form select { /* Incluído select para consistência */
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--medium-gray-border);
+  border-radius: 5px;
+  font-size: 0.95em;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
+}
+
+.profile-form input[type="text"]:focus,
+.profile-form input[type="email"]:focus,
+.profile-form input[type="password"]:focus,
+.profile-form select:focus {
+  border-color: var(--primary-blue);
+  outline: none;
+}
+
+.profile-form input[readonly] {
+  background-color: #f5f5f5; /* Cinza claro para campos readonly */
+  cursor: not-allowed;
+}
+
+/* === Estilos para a Seção de Preferências === */
+.preferences-card {
+    background-color: var(--white);
+    border-radius: 8px;
+    box-shadow: var(--card-shadow);
+    padding: 30px;
+    margin-top: 0; /* Alinha com o profile-card */
+}
+
+.preferences-card .card-title {
+    display: flex; /* Para alinhar o ícone com o texto */
+    align-items: center;
+    font-size: 1.8em; /* Um pouco menor que o título principal do perfil */
+    color: var(--dark-gray-text);
+    margin-top: 0;
+    margin-bottom: 25px;
+    text-align: left;
+    border-bottom: 1px solid var(--medium-gray-border); /* Linha de separação */
+    padding-bottom: 10px;
+}
+
+.preferences-card .card-title:not(:first-child) {
+    margin-top: 30px; /* Margem superior para títulos de subseções */
+}
+
+.preferences-card .preferences-icon {
+    font-size: 1.2em;
+    color: var(--primary-blue); /* Ícone em azul principal */
+    margin-right: 10px;
+}
+
+.preferences-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Espaço entre os grupos de preferência */
+}
+
+.preference-group {
+    display: grid; /* Usa grid para alinhar itens de forma flexível */
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* 2 colunas, min 200px */
+    gap: 20px; /* Espaço entre os itens dentro do grupo */
+    align-items: center; /* Alinha itens verticalmente */
+    padding-bottom: 15px; /* Espaçamento inferior para a linha */
+    border-bottom: 1px solid var(--medium-gray-border); /* Linha de separação entre grupos */
+}
+
+.preference-group:last-of-type {
+    border-bottom: none; /* Remove a borda do último grupo */
+    padding-bottom: 0;
+}
+
+.preference-item {
+    display: flex;
+    flex-direction: column; /* Label em cima do input/select */
+    gap: 5px;
+    text-align: left; /* Alinha o texto do item à esquerda */
+}
+
+.preference-item label {
+    font-size: 1em;
+    color: var(--dark-gray-text);
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.preference-item select {
+    background-color: var(--white);
+    cursor: pointer;
+}
+
+/* Estilo para Toggle Switch */
+.toggle-group {
+    grid-template-columns: 1fr; /* Força uma única coluna para os toggles */
+    justify-items: start; /* Alinha o conteúdo à esquerda */
+}
+
+.toggle-item {
+    flex-direction: row; /* Coloca label e switch lado a lado */
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.toggle-item label:first-child { /* A label de texto */
+    margin-bottom: 0;
+    flex-shrink: 0;
+    margin-right: 15px;
+}
+
+/* O SWITCH em si */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 45px;
+  height: 25px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--medium-gray-border); /* Cor base do slider */
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 4px;
+  bottom: 4px;
+  background-color: var(--white);
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: var(--primary-blue); /* Cor quando ativado */
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px var(--primary-blue);
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(20px);
+  -ms-transform: translateX(20px);
+  transform: translateX(20px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 25px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+
+/* === Botões de Ação Inferiores (Salvar/Cancelar) === */
+.form-actions-bottom {
+  display: flex;
+  justify-content: space-between; /* Botões nas extremidades */
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid var(--medium-gray-border); /* Linha divisória */
+}
+
+.save-button,
+.cancel-button {
+  padding: 12px 30px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.1em;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-weight: bold; /* Botões em negrito */
+}
+
+.save-button {
+  background-color: var(--primary-blue); /* Botão salvar em azul principal */
+  color: var(--white);
+}
+
+.save-button:hover {
+  background-color: #121A5E; /* Tom mais escuro do azul principal */
+}
+
+.cancel-button {
+  background-color: var(--medium-gray-border); /* Botão cancelar em cinza */
+  color: var(--dark-gray-text);
+}
+
+.cancel-button:hover {
+  background-color: var(--light-gray-hover);
+}

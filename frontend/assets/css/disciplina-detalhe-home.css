@@ -1,0 +1,191 @@
+/* disciplina-detalhe-home.css */
+
+/* Reutiliza variáveis de geral.css */
+/* Espera que geral.css defina:
+   --primary-blue
+   --white
+   --light-gray-bg
+   --dark-gray-text
+   --medium-gray-border
+   --card-shadow
+   --card-shadow-hover
+   --icon-gray
+*/
+
+/* === Cabeçalho de Detalhes da Disciplina (Botão Voltar e Nome) === */
+.discipline-detail-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.discipline-detail-header .back-button {
+  background-color: var(--white);
+  border: 1px solid var(--medium-gray-border);
+  border-radius: 50%;
+  width: 45px; /* Um pouco maior que o botão de voltar das configurações */
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2em;
+  color: var(--primary-blue);
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin-right: 15px; /* Espaço entre o botão e o nome da disciplina */
+}
+
+.discipline-detail-header .back-button:hover {
+  background-color: var(--light-gray-bg);
+  transform: translateX(-3px);
+}
+
+.discipline-detail-header .back-button i {
+    margin-right: 5px; /* Espaço entre o ícone e o texto "Inglês" */
+    font-size: 1.1em;
+}
+
+.discipline-detail-header .back-button {
+    padding: 0 15px; /* Ajusta o padding para o texto "Inglês" caber */
+    width: auto; /* Permite que a largura se ajuste ao conteúdo */
+    border-radius: 25px; /* Oval, não circular */
+    color: var(--dark-gray-text); /* Cor do texto "Inglês" */
+}
+
+
+/* === Título Principal da Disciplina === */
+.discipline-main-title {
+    font-size: 2.5em; /* Tamanho maior para o título principal */
+    color: var(--dark-gray-text);
+    margin-top: 0;
+    margin-bottom: 30px;
+    font-weight: bold;
+}
+
+/* === Contêiner para as Seções de Detalhes === */
+.detail-sections-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Espaçamento entre os cards de seção */
+}
+
+/* === Estilos para Cada Card de Seção (Avisos, Assuntos, Tópicos) === */
+.detail-section-card {
+  background-color: var(--white);
+  border-radius: 8px;
+  box-shadow: var(--card-shadow);
+  padding: 20px 30px; /* Ajuste o padding conforme necessário */
+}
+
+.section-card-title {
+  display: flex;
+  align-items: center;
+  font-size: 1.5em; /* Tamanho do título da seção */
+  color: var(--dark-gray-text);
+  margin-top: 0;
+  margin-bottom: 20px;
+  border-bottom: 1px solid var(--medium-gray-border); /* Linha divisória */
+  padding-bottom: 10px;
+}
+
+.section-card-title .fas {
+  font-size: 1.2em;
+  color: var(--primary-blue);
+  margin-right: 10px;
+}
+
+.section-items-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.section-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 0;
+  border-bottom: 1px solid #eee; /* Linha divisória entre itens */
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.section-item:last-child {
+  border-bottom: none; /* Remove a borda do último item da lista */
+}
+
+.section-item:hover {
+  background-color: var(--light-gray-bg);
+}
+
+.section-item .item-info {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.section-item-icon {
+  font-size: 1.3em;
+  color: var(--primary-blue);
+  margin-right: 15px;
+}
+
+.section-item .item-text {
+  font-size: 1.1em;
+  color: var(--dark-gray-text);
+}
+
+.section-item .item-action-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--icon-gray);
+  font-size: 1.3em;
+  transition: color 0.3s ease;
+}
+
+.section-item .item-action-button:hover {
+  color: var(--primary-blue);
+}
+
+
+/* === Estilos para o Card 'Adicionar novo tópico' === */
+.add-topic-item {
+    background-color: var(--white);
+    border: 2px dashed var(--medium-gray-border);
+    border-radius: 8px;
+    box-shadow: none;
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.add-topic-item:hover {
+    background-color: var(--light-gray-bg);
+    border-color: var(--primary-blue);
+}
+
+.add-item-content { /* Reutiliza classe já definida em pesquisar-disciplina.css, se você a combinou */
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 1.2em;
+    color: var(--dark-gray-text);
+}
+
+.add-item-content .fas {
+    font-size: 1.5em;
+    color: var(--primary-blue);
+}
+
+.add-item-button { /* Reutiliza classe já definida */
+    font-size: 2em;
+    color: var(--primary-blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

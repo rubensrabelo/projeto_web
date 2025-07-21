@@ -1,0 +1,175 @@
+/* disciplina-acompanhar-entrega.css */
+
+/* Reutiliza variáveis de geral.css */
+
+/* === Cabeçalho da Página com Botão de Voltar (Reutilizado) === */
+.page-header-with-back {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.page-header-with-back .back-button {
+  background-color: var(--white);
+  border: 1px solid var(--medium-gray-border);
+  border-radius: 25px; /* Formato oval */
+  width: auto;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2em;
+  color: var(--dark-gray-text); /* Cor do texto "Acompanhar entregas" */
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.page-header-with-back .back-button:hover {
+  background-color: var(--light-gray-bg);
+  transform: translateX(-3px);
+}
+
+.page-header-with-back .back-button i {
+  font-size: 1.1em;
+  margin-right: 10px;
+  color: var(--primary-blue);
+}
+
+/* === Card Principal de Conteúdo (Reutilizado) === */
+.main-content-card {
+  background-color: var(--white);
+  border-radius: 8px;
+  box-shadow: var(--card-shadow);
+  padding: 30px;
+  margin-top: 0;
+}
+
+.main-content-card .card-title {
+  font-size: 1.8em;
+  color: var(--dark-gray-text);
+  margin-top: 0;
+  margin-bottom: 25px;
+  text-align: left;
+}
+
+/* === Tabela de Entregas === */
+.deliveries-table-container {
+    overflow-x: auto; /* Permite scroll horizontal em telas pequenas */
+    margin-bottom: 20px;
+}
+
+.deliveries-table {
+    width: 100%;
+    border-collapse: collapse; /* Remove espaçamento entre bordas da célula */
+    table-layout: fixed; /* Ajuda a controlar larguras de coluna */
+}
+
+.deliveries-table th,
+.deliveries-table td {
+    border: 1px solid #eee; /* Bordas claras entre células */
+    padding: 12px 15px;
+    text-align: left;
+    font-size: 0.95em;
+    color: var(--dark-gray-text);
+    word-wrap: break-word; /* Quebra palavras longas */
+}
+
+.deliveries-table th {
+    background-color: var(--primary-blue); /* Fundo azul para o cabeçalho da tabela */
+    color: var(--white);
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.9em;
+}
+
+.deliveries-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9; /* Fundo zebrado para linhas */
+}
+
+.deliveries-table tbody tr:hover {
+    background-color: var(--light-gray-bg); /* Fundo claro no hover */
+}
+
+/* Estilo para links de arquivo na tabela */
+.deliveries-table .file-link {
+    color: var(--primary-blue);
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+/* Estilo para a célula da nota */
+.deliveries-table .grade-cell {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Espaço entre nota e botão */
+    gap: 5px;
+}
+
+.deliveries-table .grade-cell .grade-value {
+    font-weight: bold;
+    color: var(--dark-gray-text);
+    flex-grow: 1; /* Permite que o span da nota ocupe espaço */
+    text-align: right; /* Alinha a nota à direita */
+}
+
+.deliveries-table .grade-cell .grade-input {
+    width: 60px; /* Largura para o input da nota */
+    padding: 5px 8px;
+    font-size: 0.9em;
+    border: 1px solid var(--medium-gray-border);
+    border-radius: 4px;
+    text-align: center;
+    -moz-appearance: textfield; /* Remove setas padrão de number input no Firefox */
+    -webkit-appearance: none; /* Remove setas padrão de number input no Chrome/Safari */
+    margin: 0; /* Remove margens padrão */
+}
+
+/* Esconder setas de input[type="number"] no Chrome, Safari, Edge, Opera */
+.deliveries-table .grade-cell .grade-input::-webkit-outer-spin-button,
+.deliveries-table .grade-cell .grade-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+
+.deliveries-table .edit-grade-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--primary-blue); /* Cor do ícone de lápis */
+    font-size: 1.1em;
+    padding: 5px;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+    flex-shrink: 0; /* Impede que o botão encolha */
+}
+
+.deliveries-table .edit-grade-button:hover {
+    background-color: var(--light-gray-bg);
+}
+
+/* === Botão Salvar (Posicionado no canto inferior direito - Reutilizado) === */
+.form-actions-bottom-right {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid var(--medium-gray-border);
+}
+
+.form-actions-bottom-right .save-button {
+    padding: 12px 40px;
+    font-size: 1.2em;
+    background-color: var(--primary-blue);
+    color: var(--white);
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.form-actions-bottom-right .save-button:hover {
+    background-color: #121A5E;
+}

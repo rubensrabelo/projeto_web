@@ -1,100 +1,298 @@
-/* === Estilo Geral === */
+/* geral.css */
+
+:root {
+  --primary-blue: #1A237E; /* Azul escuro da sidebar */
+  --light-gray-bg: #F0F2F5; /* Cor de fundo principal */
+  --white: #ffffff;
+  --text-color-dark: #333;
+  --text-color-light: #eee;
+  --card-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+  /* Novas variáveis para responsividade, se necessário */
+  --mobile-sidebar-width: 200px; /* Largura da sidebar em mobile */
+}
 
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
   margin: 0;
+  font-family: 'Roboto', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--light-gray-bg);
+  line-height: 1.6; /* Melhor legibilidade */
 }
 
-form,
-.container {
-  background-color: #fff;
-  padding: 30px;
-  border-radius: 12px;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-  width: 320px;
-  text-align: center;
-}
-
-input,
-select,
-button {
-  width: 100%;
-  padding: 10px;
-  margin: 8px 0;
-  font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-}
-
-button {
-  background-color: #007bff;
-  color: white;
-  border: none;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background 0.2s ease-in-out;
-}
-
-button:hover {
-  background-color: #0056b3;
-}
-
-a {
-  text-decoration: none;
-  color: #007bff;
-  font-size: 0.9rem;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-
-/* === Estilo de Layout Reutilizável (Navbar e Boas-vindas) === */
-
+/* === Layout Principal da Aplicação === */
 .layout {
   display: flex;
-  height: 100vh;
-  font-family: Arial, sans-serif;
+  min-height: 100vh;
+  width: 100%;
 }
 
+/* Sidebar */
 .sidebar {
-  width: 220px;
-  background-color: #f4f4f4;
-  padding: 20px;
-  border-right: 1px solid #ccc;
+  width: 250px; /* Largura padrão para desktop */
+  background-color: var(--primary-blue);
+  color: var(--white);
+  padding: 20px 0;
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  justify-content: space-between;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+  flex-shrink: 0; /* Impede que a sidebar encolha em desktop */
 }
 
-.sidebar h3 {
-  margin-top: 0;
+.sidebar-header {
+  text-align: center;
+  margin-bottom: 30px;
 }
 
-.sidebar a,
-.sidebar button {
+.sidebar-header .fas.fa-graduation-cap {
+  font-size: 80px;
+  color: var(--white);
+}
+
+.sidebar-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex-grow: 1;
+}
+
+.sidebar-menu li {
+  margin-bottom: 10px;
+}
+
+.sidebar-menu a {
+  display: block;
+  padding: 12px 25px;
+  color: var(--text-color-light);
   text-decoration: none;
-  color: #333;
-  background-color: #ddd;
-  padding: 10px;
-  border: none;
-  border-radius: 5px;
-  text-align: left;
+  font-size: 1.1em;
+  transition: background-color 0.3s ease;
+}
+
+.sidebar-menu a:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.sidebar-menu li.active a {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-left: 5px solid var(--white);
+  padding-left: 20px;
+}
+
+.sidebar-footer {
+  padding: 20px 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin-top: 20px;
+}
+
+.sidebar-footer a {
+  color: var(--text-color-light);
+  text-decoration: none;
+  font-size: 1.1em;
+  display: flex;
+  align-items: center;
+  transition: color 0.3s ease;
+}
+
+.sidebar-footer a:hover {
+  color: var(--white);
+}
+
+.sidebar-footer a .fas {
+  margin-right: 8px;
+  font-size: 1.2em;
+}
+
+
+/* Conteúdo Principal */
+.content {
+  flex-grow: 1; /* Ocupa o espaço restante */
+  padding: 30px;
+  background-color: var(--light-gray-bg);
+}
+
+.content-header {
+  display: flex;
+  justify-content: flex-end; /* Alinha o conteúdo à direita */
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  font-size: 1.1em;
+  color: var(--text-color-dark);
+}
+
+.user-info .fas.fa-user-circle {
+  font-size: 1.5em;
+  margin-right: 10px;
+  color: #777; /* Cor do ícone de usuário */
+}
+
+/* Card Principal (Sitask) */
+.main-card {
+  background-color: var(--white);
+  border-radius: 8px;
+  box-shadow: var(--card-shadow);
+  padding: 25px;
+  margin-bottom: 30px;
+}
+
+.card-title {
+  font-size: 1.8em;
+  color: var(--text-color-dark);
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+
+
+/* === Responsividade Simples === */
+
+/* Menu hamburguer para mobile (oculto por padrão) */
+.hamburger-menu {
+  display: none; /* Oculto por padrão */
+  position: fixed; /* Fixa na tela */
+  top: 20px;
+  left: 20px;
+  font-size: 1.8em;
+  color: var(--primary-blue);
   cursor: pointer;
+  z-index: 1001; /* Garante que fique acima de tudo */
+  background-color: var(--white);
+  padding: 8px 12px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
-.sidebar a:hover,
-.sidebar button:hover {
-  background-color: #ccc;
+/* Overlay para quando a sidebar está aberta em mobile */
+.overlay {
+  display: none; /* Oculto por padrão */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999; /* Abaixo da sidebar */
 }
 
-#boasVindas {
-  font-size: 26px;
-  color: #333;
-  margin-bottom: 20px;
+
+/* Media Query para telas menores (smartphones e tablets em retrato) */
+@media (max-width: 768px) {
+  .layout {
+    flex-direction: column; /* Sidebar e conteúdo empilham */
+    position: relative; /* Para que o conteúdo possa se posicionar */
+  }
+
+  .sidebar {
+    width: var(--mobile-sidebar-width); /* Largura menor para a sidebar em mobile */
+    position: fixed; /* Fixa a sidebar para ser um menu pop-out */
+    height: 100%; /* Ocupa a altura total */
+    transform: translateX(-100%); /* Oculta a sidebar por padrão */
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease-in-out; /* Transição suave */
+  }
+
+  .sidebar.active {
+    transform: translateX(0); /* Mostra a sidebar quando ativa */
+  }
+
+  .content {
+    margin-left: 0; /* Remove a margem fixa para o conteúdo */
+    width: 100%; /* Ocupa a largura total da tela */
+    padding: 20px; /* Reduz o padding para celulares */
+  }
+
+  .hamburger-menu {
+    display: block; /* Mostra o menu hamburguer */
+  }
+
+  /* Ajusta o padding superior do conteúdo para não ser coberto pelo hamburguer */
+  .content-header {
+      margin-top: 50px; /* Espaço para o menu hamburguer */
+  }
+
+  /* Reduz o padding em cards e containers para telas menores */
+  .main-card,
+  .profile-card, /* Assumindo que você tem essas classes em outros CSSs */
+  .preferences-card,
+  .detail-section-card,
+  .main-content-card,
+  .section-list-container {
+      padding: 15px;
+  }
+
+  /* Reduz o tamanho da fonte de títulos */
+  .card-title {
+      font-size: 1.5em;
+  }
+
+  .user-info {
+      font-size: 1em;
+  }
+
+  /* Faz com que formulários em duas colunas virem uma única coluna */
+  .form-row { /* Se você usa esta classe para layouts de formulário */
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .form-group.half-width { /* Se você usa esta classe para campos em form-row */
+    width: 100%;
+    min-width: unset;
+  }
+
+  /* Botões de ação no rodapé (empilha-os) */
+  .form-actions-bottom,
+  .form-actions-bottom-right {
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .save-button,
+  .cancel-button,
+  .secondary-button,
+  .add-section-button { /* Botões específicos */
+      width: 100%;
+  }
+
+  /* Ajustes gerais para inputs/selects/textareas para garantir que se ajustem */
+  .content input:not([type="checkbox"]):not([type="radio"]),
+  .content select,
+  .content textarea {
+      padding: 10px;
+      font-size: 0.95em;
+  }
+}
+
+/* Media Query para telas MUITO pequenas (celulares menores) */
+@media (max-width: 480px) {
+  .sidebar {
+    width: 160px; /* Sidebar ainda mais estreita */
+  }
+
+  .content {
+    padding: 10px; /* Padding mínimo */
+  }
+
+  .content-header {
+    justify-content: center; /* Centraliza o user-info se houver espaço */
+    font-size: 0.85em;
+    margin-top: 40px; /* Ajusta espaço */
+  }
+
+  .hamburger-menu {
+    font-size: 1.5em;
+    padding: 6px 10px;
+    top: 10px;
+    left: 10px;
+  }
 }
