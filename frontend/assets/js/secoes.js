@@ -1,119 +1,139 @@
 document.addEventListener("DOMContentLoaded", async () => {
-  const token = localStorage.getItem("token");
-  if (!token) {
-    alert("Você precisa estar logado.");
-    window.location.href = "../../index.html";
-    return;
-  }
-
-  const urlParams = new URLSearchParams(window.location.search);
-  const courseId = urlParams.get("id");
-
-  if (!courseId) {
-    alert("ID da disciplina não fornecido.");
-    window.location.href = "home.html";
-    return;
-  }
-
-  try {
-    const resUser = await fetch("http://localhost:3000/users/me", {
-      headers: { Authorization: `Bearer ${token}` }
-    });
-
-    if (!resUser.ok) throw new Error("Erro ao carregar usuário");
-
-    const user = await resUser.json();
-    document.getElementById("boasVindas").textContent = `Bem-vindo, ${user.firstname}!`;
-
-    carregarSecoes(courseId);
-  } catch (err) {
-    console.error(err);
-    alert("Erro ao carregar usuário.");
-  }
-});
-
-async function carregarSecoes(courseId) {
-  const container = document.getElementById("listaSecoes");
-  container.innerHTML = "<p>Carregando seções...</p>";
-
-  try {
     const token = localStorage.getItem("token");
-
-    const res = await fetch(`http://localhost:3000/topics/course/${courseId}`, {
-      headers: { Authorization: `Bearer ${token}` }
-    });
-
-    if (!res.ok) throw new Error("Erro ao buscar seções");
-    const secoes = await res.json();
-
-    if (!secoes.length) {
-      container.innerHTML = "<p>Nenhuma seção encontrada.</p>";
-      return;
+    if (!token) {
+        return window.location.href = "../../index.html"; // Redireciona se não houver token
     }
 
-    const secoesComArquivos = await Promise.all(
-      secoes.map(async (secao) => {
-        const resFiles = await fetch(`http://localhost:3000/files/${secao._id}`, {
-          headers: { Authorization: `Bearer ${token}` }
+    // --- Carregar informações do usuário (para "Olá, Professor(a)!") ---
+    const userRes = await fetch("http://localhost:3000/users/me", {
+        headers: { Authorization: `Bearer ${token}` }
+    });
+    const userData = await userRes.json();
+    const nomeProf = userData.firstname || "Professor(a)";
+    
+    const userNameHeaderSpan = document.querySelector('.user-info span');
+    if (userNameHeaderSpan) {
+        userNameHeaderSpan.innerText = `Olá, ${nomeProf}!`;
+    }
+
+    // --- Lógica de Dropzone de Arquivos ---
+    const fileUploadDropzone = document.getElementById("fileUploadDropzone");
+    const fileUploadInput = document.getElementById("fileUpload");
+    let selectedFiles = []; // Para armazenar os arquivos selecionados
+
+    // Abre o seletor de arquivos ao clicar no dropzone
+    fileUploadDropzone.addEventListener('click', () => {
+        fileUploadInput.click();
+    });
+
+    // Lida com a seleção de arquivos através do input
+    fileUploadInput.addEventListener('change', (event) => {
+        handleFiles(event.target.files);
+    });
+
+    // Lida com o arrastar sobre o dropzone
+    fileUploadDropzone.addEventListener('dragover', (event) => {
+        event.preventDefault();
+        fileUploadDropzone.style.borderColor = getComputedStyle(document.documentElement).getPropertyValue('--primary-blue'); // Usa variável CSS
+    });
+
+    // Lida com a saída do arrastar do dropzone
+    fileUploadDropzone.addEventListener('dragleave', () => {
+        fileUploadDropzone.style.borderColor = getComputedStyle(document.documentElement).getPropertyValue('--medium-gray-border'); // Usa variável CSS
+    });
+
+    // Lida com o soltar de arquivos no dropzone
+    fileUploadDropzone.addEventListener('drop', (event) => {
+        event.preventDefault();
+        fileUploadDropzone.style.borderColor = getComputedStyle(document.documentElement).getPropertyValue('--medium-gray-border'); // Usa variável CSS
+        handleFiles(event.dataTransfer.files);
+    });
+
+    function handleFiles(files) {
+        selectedFiles = [...files];
+        if (selectedFiles.length > 0) {
+            fileUploadDropzone.querySelector('p').textContent = `${selectedFiles.length} arquivo(s) selecionado(s)`;
+        } else {
+            fileUploadDropzone.querySelector('p').textContent = `Solte o arquivo aqui...`;
+        }
+        console.log("Arquivos selecionados para upload:", selectedFiles);
+    }
+
+
+    // --- Lógica de Submissão do Formulário de Criação de Sessão ---
+    const createSessionForm = document.getElementById("createSessionForm"); // ID ajustado
+    createSessionForm.addEventListener('submit', async (event) => {
+        event.preventDefault();
+
+        const sessionName = document.getElementById("sessionName").value.trim(); // ID ajustado
+        const submissionLimit = document.getElementById("submissionLimit").value;
+        const sessionType = document.getElementById("sessionType").value; // ID ajustado
+        const submissionSize = document.getElementById("submissionSize").value.trim();
+        const defineSchedule = document.getElementById("defineSchedule").value;
+        const startDate = document.getElementById("startDate").value;
+        const conclusionDate = document.getElementById("conclusionDate").value;
+        const emailNotifications = document.getElementById("emailNotifications").checked;
+
+        // Validação básica
+        if (!sessionName || !sessionType || !defineSchedule || !startDate || !conclusionDate) {
+            alert("Por favor, preencha todos os campos obrigatórios.");
+            return;
+        }
+
+        const formData = new FormData();
+        formData.append('name', sessionName); // Nome ajustado
+        formData.append('type', sessionType); // Tipo ajustado
+        formData.append('schedule', defineSchedule);
+        formData.append('startDate', startDate);
+        formData.append('conclusionDate', conclusionDate);
+        formData.append('submissionLimit', submissionLimit);
+        formData.append('submissionSize', submissionSize);
+        formData.append('emailNotifications', emailNotifications);
+
+        selectedFiles.forEach((file, index) => {
+            formData.append(`files[${index}]`, file);
         });
-        const arquivos = resFiles.ok ? await resFiles.json() : [];
-        return { ...secao, arquivos };
-      })
-    );
+        
+        // Obter o ID da disciplina da URL para associar a sessão
+        const urlParams = new URLSearchParams(window.location.search);
+        const disciplineId = urlParams.get('disciplineId');
 
-    const baseUrl = "http://localhost:3000/uploads/";
+        if (!disciplineId) {
+            alert("ID da disciplina não encontrado na URL. Não é possível criar a sessão.");
+            return;
+        }
+        formData.append('disciplineId', disciplineId); // Adiciona o ID da disciplina ao payload
 
-    // Coloar no href abaixo: "dados-atividade.html?topicId=${secao._id}"
-    container.innerHTML = secoesComArquivos.map(secao => {
-      const visualizarLink = secao.type === "activity"
-        ? `<a href=# class="visualizar-dados">📊 Visualizar Dados da Atividade</a>`
-        : "";
+        try {
+            // Endpoint para criar uma nova sessão
+            const res = await fetch("http://localhost:3000/sessions", { // Exemplo: POST para /sessions
+                method: "POST",
+                headers: {
+                    "Authorization": `Bearer ${token}`
+                },
+                body: formData
+            });
 
-      const listaArquivos = secao.arquivos.length
-        ? `<ul class="lista-arquivos">` +
-          secao.arquivos.map(arq =>
-            `<li>
-              <a href="${baseUrl + arq.savedName}" download="${arq.name}" target="_blank" rel="noopener noreferrer" title="Clique para baixar">
-                ${arq.name} ⬇️
-              </a>
-            </li>`
-          ).join("") +
-          `</ul>`
-        : `<p><i>Nenhum arquivo nesta seção.</i></p>`;
+            if (res.ok) {
+                alert("Sessão criada com sucesso!");
+                createSessionForm.reset();
+                selectedFiles = [];
+                fileUploadDropzone.querySelector('p').textContent = `Solte o arquivo aqui...`;
+                window.location.href = `secoes.html?disciplineId=${disciplineId}`; // Volta para a lista de seções da disciplina
+            } else {
+                const errorData = await res.json();
+                alert(`Erro ao criar sessão: ${errorData.message || res.statusText}`);
+            }
 
-      return `
-        <div class="secao">
-          <h3>${secao.title}</h3>
-          ${visualizarLink}
-          ${listaArquivos}
-          <div class="botoes-secao">
-            <button title="Adicionar Conteúdo" onclick="adicionarConteudo('${secao._id}')">📄</button>
-            <button title="Editar Seção" onclick="editarSecao('${secao._id}')">✏️</button>
-          </div>
-        </div>
-      `;
-    }).join("");
+        } catch (err) {
+            console.error("Erro na requisição de criação de sessão:", err);
+            alert("Erro de comunicação com o servidor ao criar sessão.");
+        }
+    });
 
-  } catch (err) {
-    console.error(err);
-    container.innerHTML = "<p>Erro ao carregar seções e arquivos.</p>";
-  }
-}
-
-function adicionarConteudo(topicId) {
-  window.location.href = `adicionar-arquivo.html?topicId=${topicId}`;
-}
-
-function editarSecao(topicId) {
-  window.location.href = `editar-secao.html?id=${topicId}`;
-}
-
-function irParaCriarSecao() {
-  const courseId = new URLSearchParams(window.location.search).get("id");
-  window.location.href = `criar-secao.html?id=${courseId}`;
-}
+}); // Fim do DOMContentLoaded
 
 function logout() {
-  localStorage.removeItem("token");
-  window.location.href = "../../index.html";
+    localStorage.removeItem("token");
+    window.location.href = "../../index.html";
 }

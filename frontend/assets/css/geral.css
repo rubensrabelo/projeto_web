@@ -1,100 +1,275 @@
-/* === Estilo Geral === */
+:root {
+  --primary-blue: #1A237E;
+  --light-gray-bg: #F0F2F5;
+  --white: #ffffff;
+  --text-color-dark: #333;
+  --text-color-light: #eee;
+  --card-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  --mobile-sidebar-width: 200px;
+}
 
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
   margin: 0;
+  font-family: 'Roboto', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--light-gray-bg);
+  line-height: 1.6;
 }
-
-form,
-.container {
-  background-color: #fff;
-  padding: 30px;
-  border-radius: 12px;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-  width: 320px;
-  text-align: center;
-}
-
-input,
-select,
-button {
-  width: 100%;
-  padding: 10px;
-  margin: 8px 0;
-  font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-}
-
-button {
-  background-color: #007bff;
-  color: white;
-  border: none;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background 0.2s ease-in-out;
-}
-
-button:hover {
-  background-color: #0056b3;
-}
-
-a {
-  text-decoration: none;
-  color: #007bff;
-  font-size: 0.9rem;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-
-/* === Estilo de Layout Reutilizável (Navbar e Boas-vindas) === */
 
 .layout {
   display: flex;
-  height: 100vh;
-  font-family: Arial, sans-serif;
+  min-height: 100vh;
+  width: 100%;
 }
 
 .sidebar {
-  width: 220px;
-  background-color: #f4f4f4;
-  padding: 20px;
-  border-right: 1px solid #ccc;
+  width: 250px;
+  background-color: var(--primary-blue);
+  color: var(--white);
+  padding: 20px 0;
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  justify-content: space-between;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+  flex-shrink: 0;
 }
 
-.sidebar h3 {
-  margin-top: 0;
+.sidebar-header {
+  text-align: center;
+  margin-bottom: 30px;
 }
 
-.sidebar a,
-.sidebar button {
+.sidebar-header .fas.fa-graduation-cap {
+  font-size: 80px;
+  color: var(--white);
+}
+
+.sidebar-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex-grow: 1;
+}
+
+.sidebar-menu li {
+  margin-bottom: 10px;
+}
+
+.sidebar-menu a {
+  display: block;
+  padding: 12px 25px;
+  color: var(--text-color-light);
   text-decoration: none;
-  color: #333;
-  background-color: #ddd;
-  padding: 10px;
-  border: none;
-  border-radius: 5px;
-  text-align: left;
+  font-size: 1.1em;
+  transition: background-color 0.3s ease;
+}
+
+.sidebar-menu a:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.sidebar-menu li.active a {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-left: 5px solid var(--white);
+  padding-left: 20px;
+}
+
+.sidebar-footer {
+  padding: 20px 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin-top: 20px;
+}
+
+.sidebar-footer a {
+  color: var(--text-color-light);
+  text-decoration: none;
+  font-size: 1.1em;
+  display: flex;
+  align-items: center;
+  transition: color 0.3s ease;
+}
+
+.sidebar-footer a:hover {
+  color: var(--white);
+}
+
+.sidebar-footer a .fas {
+  margin-right: 8px;
+  font-size: 1.2em;
+}
+
+.content {
+  flex-grow: 1;
+  padding: 30px;
+  background-color: var(--light-gray-bg);
+}
+
+.content-header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  font-size: 1.1em;
+  color: var(--text-color-dark);
+}
+
+.user-info .fas.fa-user-circle {
+  font-size: 1.5em;
+  margin-right: 10px;
+  color: #777;
+}
+
+.main-card {
+  background-color: var(--white);
+  border-radius: 8px;
+  box-shadow: var(--card-shadow);
+  padding: 25px;
+  margin-bottom: 30px;
+}
+
+.card-title {
+  font-size: 1.8em;
+  color: var(--text-color-dark);
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+
+.hamburger-menu {
+  display: none;
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  font-size: 1.8em;
+  color: var(--primary-blue);
   cursor: pointer;
+  z-index: 1001;
+  background-color: var(--white);
+  padding: 8px 12px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
-.sidebar a:hover,
-.sidebar button:hover {
-  background-color: #ccc;
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
 }
 
-#boasVindas {
-  font-size: 26px;
-  color: #333;
-  margin-bottom: 20px;
+@media (max-width: 768px) {
+  .layout {
+    flex-direction: column;
+    position: relative;
+  }
+
+  .sidebar {
+    width: var(--mobile-sidebar-width);
+    position: fixed;
+    height: 100%;
+    transform: translateX(-100%);
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .sidebar.active {
+    transform: translateX(0);
+  }
+
+  .content {
+    margin-left: 0;
+    width: 100%;
+    padding: 20px;
+  }
+
+  .hamburger-menu {
+    display: block;
+  }
+
+  .content-header {
+      margin-top: 50px;
+  }
+
+  .main-card,
+  .profile-card,
+  .preferences-card,
+  .detail-section-card,
+  .main-content-card,
+  .section-list-container {
+      padding: 15px;
+  }
+
+  .card-title {
+      font-size: 1.5em;
+  }
+
+  .user-info {
+      font-size: 1em;
+  }
+
+  .form-row {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .form-group.half-width {
+    width: 100%;
+    min-width: unset;
+  }
+
+  .form-actions-bottom,
+  .form-actions-bottom-right {
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .save-button,
+  .cancel-button,
+  .secondary-button,
+  .add-section-button {
+      width: 100%;
+  }
+
+  .content input:not([type="checkbox"]):not([type="radio"]),
+  .content select,
+  .content textarea {
+      padding: 10px;
+      font-size: 0.95em;
+  }
+}
+
+@media (max-width: 480px) {
+  .sidebar {
+    width: 160px;
+  }
+
+  .content {
+    padding: 10px;
+  }
+
+  .content-header {
+    justify-content: center;
+    font-size: 0.85em;
+    margin-top: 40px;
+  }
+
+  .hamburger-menu {
+    font-size: 1.5em;
+    padding: 6px 10px;
+    top: 10px;
+    left: 10px;
+  }
 }

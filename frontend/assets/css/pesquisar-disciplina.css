@@ -1,94 +1,150 @@
-.content {
-  flex: 1;
-  padding: 40px;
-  text-align: center;
-  background-color: #f5f5f5;
-}
-
-#boasVindas {
-  font-size: 26px;
-  margin-bottom: 30px;
-  color: #333;
-}
-
-.topo-conteudo {
+.search-bar-container {
   display: flex;
-  justify-content: center;
-  gap: 10px;
+  align-items: center;
+  background-color: var(--white);
+  border-radius: 8px;
+  box-shadow: var(--card-shadow);
+  padding: 10px;
   margin-bottom: 30px;
 }
 
-.topo-conteudo input {
-  width: 300px;
-  padding: 10px;
-  font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 6px;
+.search-input {
+  flex-grow: 1;
+  border: none;
+  padding: 10px 15px;
+  font-size: 1.1em;
+  outline: none;
 }
 
-.topo-conteudo button {
-  padding: 10px 20px;
-  background-color: #007bff;
-  color: white;
+.search-input::placeholder {
+  color: #aaa;
+}
+
+.search-button {
+  background-color: var(--primary-blue);
+  color: var(--white);
   border: none;
   border-radius: 6px;
-  font-size: 1rem;
+  padding: 12px 20px;
   cursor: pointer;
+  font-size: 1.2em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
 }
 
-.topo-conteudo button:hover {
-  background-color: #0056b3;
+.search-button:hover {
+  background-color: #121A5E;
 }
 
-.disciplinas-container {
+.search-button .fas {
+  font-size: 1.1em;
+}
+
+.section-title {
+  font-size: 1.6em;
+  color: var(--dark-gray-text);
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+.disciplinas-list {
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  align-items: center;
+  gap: 15px;
 }
 
-.disciplina {
-  width: 90%;
-  max-width: 700px;
-  background-color: #fff;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  padding: 20px 30px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-}
-
-.disciplina h3 {
-  margin: 0;
-  font-size: 20px;
-  color: #333;
-  text-align: left;
-}
-
-.disciplina a {
-  font-size: 0.95rem;
-  color: #007bff;
-  text-decoration: none;
-}
-
-.disciplina a:hover {
-  text-decoration: underline;
-}
-
-#btnNovaDisciplina {
-  margin-top: 30px;
-  padding: 12px 24px;
-  background-color: #AEAEB0;
-  color: white;
-  border: none;
+.disciplina-item {
+  background-color: var(--white);
   border-radius: 8px;
-  font-size: 1rem;
+  box-shadow: var(--card-shadow);
+  padding: 15px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: transform 0.2s ease-in-out;
   cursor: pointer;
-  transition: background-color 0.2s ease-in-out;
 }
 
-#btnNovaDisciplina:hover {
-  background-color: #6F6F6F;
+.disciplina-item:hover {
+  transform: translateY(-3px);
+}
+
+.item-info {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.item-icon {
+  font-size: 30px;
+  color: var(--primary-blue);
+  margin-right: 15px;
+}
+
+.item-subject {
+  font-size: 1.3em;
+  color: var(--dark-gray-text);
+  margin: 0;
+  font-weight: bold;
+}
+
+.item-code {
+  font-size: 0.9em;
+  color: #666;
+  margin-left: 10px;
+}
+
+.item-action-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #888;
+  font-size: 1.5em;
+  transition: color 0.3s ease;
+}
+
+.item-action-button:hover {
+  color: var(--primary-blue);
+}
+
+.add-disciplina-item {
+  margin-top: 17px;
+    background-color: var(--white);
+    border: 2px dashed var(--medium-gray-border);
+    border-radius: 8px;
+    box-shadow: none;
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.add-disciplina-item:hover {
+    background-color: var(--light-gray-bg);
+    border-color: var(--primary-blue);
+}
+
+.add-item-content {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 1.2em;
+    color: var(--dark-gray-text);
+}
+
+.add-item-content .fas {
+    font-size: 1.5em;
+    color: var(--primary-blue);
+}
+
+.add-item-button {
+    font-size: 2em;
+    color: var(--primary-blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

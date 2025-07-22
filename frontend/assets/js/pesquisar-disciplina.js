@@ -1,58 +1,94 @@
+// Variável para armazenar todas as disciplinas carregadas do backend
+let todasDisciplinas = [];
+
 document.addEventListener("DOMContentLoaded", async () => {
   const token = localStorage.getItem("token");
   if (!token) {
-    alert("Você precisa estar logado.");
-    window.location.href = "../../index.html";
-    return;
+    return window.location.href = "../../index.html";
   }
 
   try {
-    const res = await fetch("http://localhost:3000/users/me", {
+    const userRes = await fetch("http://localhost:3000/users/me", {
       headers: { Authorization: `Bearer ${token}` }
     });
+    const userData = await userRes.json();
+    const nomeProf = userData.firstname || "Professor(a)";
+    
+    const userNameHeaderSpan = document.querySelector('.user-info span'); 
+    if (userNameHeaderSpan) {
+        userNameHeaderSpan.innerText = `Olá, ${nomeProf}!`;
+    }
 
-    const user = await res.json();
-    document.getElementById("boasVindas").textContent = `Bem-vindo, ${user.firstname}!`;
+    const cursosRes = await fetch("http://localhost:3000/courses/teacher", {
+      headers: { Authorization: `Bearer ${token}` }
+    });
+    todasDisciplinas = await cursosRes.json();
 
-    buscarDisciplinas();
+    renderizarDisciplinas(todasDisciplinas);
+
+    const campoBusca = document.getElementById("campoBusca");
+    campoBusca.addEventListener("keyup", buscarDisciplinas);
+    campoBusca.addEventListener("change", buscarDisciplinas);
+
   } catch (err) {
-    console.error(err);
-    alert("Erro ao carregar dados do usuário.");
+    console.error("Erro ao carregar dados:", err);
+    alert("Erro ao carregar dados das disciplinas.");
   }
 });
 
-async function buscarDisciplinas() {
-  const termo = document.getElementById("campoBusca").value.trim();
-  const token = localStorage.getItem("token");
-  const container = document.getElementById("resultados");
+function renderizarDisciplinas(disciplinasParaExibir) {
+  const resultadosDiv = document.getElementById("resultados");
+  resultadosDiv.innerHTML = ""; // Limpa o conteúdo antes de adicionar
 
-  container.innerHTML = "<p>Carregando...</p>";
+  if (disciplinasParaExibir.length === 0) {
+    resultadosDiv.innerHTML = '<p style="text-align: center; color: #666;">Nenhuma disciplina encontrada.</p>';
+  } else {
+      disciplinasParaExibir.forEach(curso => {
+        const disciplinaItem = document.createElement("div");
+        disciplinaItem.className = "disciplina-item";
+        // ADIÇÃO CRUCIAL: Adiciona o onclick ao DIV inteiro do card
+        disciplinaItem.onclick = () => entrarNaDisciplina(curso._id); 
 
-  try {
-    const res = await fetch(`http://localhost:3000/courses/search${termo ? `?name=${encodeURIComponent(termo)}` : ""}`, {
-      headers: { Authorization: `Bearer ${token}` }
-    });
-
-    if (!res.ok) throw new Error("Erro ao buscar disciplinas.");
-
-    const cursos = await res.json();
-
-    if (!cursos.length) {
-      container.innerHTML = "<p>Nenhuma disciplina encontrada.</p>";
-      return;
-    }
-
-    container.innerHTML = cursos.map(curso => `
-      <div class="disciplina">
-        <h3>${curso.name}</h3>
-        <a href="secoes.html?id=${curso._id}">Ver Seções</a>
-      </div>
-    `).join("");
-
-  } catch (err) {
-    console.error(err);
-    container.innerHTML = "<p>Erro ao carregar disciplinas.</p>";
+        disciplinaItem.innerHTML = `
+          <div class="item-info">
+            <div class="item-icon">
+              <i class="fas fa-bookmark"></i>
+            </div>
+            <h4 class="item-subject">${curso.name}</h4>
+            <span class="item-code">${curso.classSchedule || "N/A"}</span>
+          </div>
+          <button class="item-action-button">
+            <i class="fas fa-chevron-right"></i>
+          </button>
+        `;
+        resultadosDiv.appendChild(disciplinaItem);
+      });
   }
+
+  // O card "Adicionar nova disciplina..." (se ainda presente no HTML estaticamente)
+  // não é manipulado por esta função, ele deve ter seu próprio onclick direto no HTML.
+}
+
+// Esta função redireciona para a página de detalhes da disciplina
+function entrarNaDisciplina(cursoId) {
+  if (cursoId) {
+    window.location.href = `disciplina-detalhe-home.html?id=${cursoId}`; 
+  } else {
+    console.error("ID do curso é inválido, não foi possível redirecionar.");
+    alert("Não foi possível acessar os detalhes da disciplina.");
+  }
+}
+
+function buscarDisciplinas() {
+  const termoBusca = document.getElementById("campoBusca").value.toLowerCase();
+  
+  const disciplinasFiltradas = todasDisciplinas.filter(curso => {
+    const nomeCorresponde = curso.name.toLowerCase().includes(termoBusca);
+    const horarioCorresponde = (curso.classSchedule || "").toLowerCase().includes(termoBusca);
+    return nomeCorresponde || horarioCorresponde;
+  });
+
+  renderizarDisciplinas(disciplinasFiltradas);
 }
 
 function logout() {

@@ -14,4 +14,5 @@ router.get("/student", auth("student"), CourseController.getByStudent);
 router.get("/:id/teacher", auth(), CourseController.getCourseByIdWithTeacher);
 router.get("/:id/students", auth(), CourseController.getCourseByIdWithStudents);
 
+
 module.exports = router;

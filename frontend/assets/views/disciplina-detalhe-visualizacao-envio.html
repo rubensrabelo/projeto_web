@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>TL - DISCIPLINA - DETALHE - VISUALIZAÇÃO DE ENVIO</title>
+    <link rel="stylesheet" href="../css/geral.css" />
+    <link rel="stylesheet" href="../css/disciplina-detalhe-visualizacao-envio.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+    <div class="layout">
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <i class="fas fa-graduation-cap"></i>
+            </div>
+            <ul class="sidebar-menu">
+                <li><a href="config.html">Configurações</a></li>
+                <li><a href="criar-disciplina.html">Criar Disciplina</a></li>
+                <li><a href="criar-secao.html">Criar Sessão</a></li>
+                <li><a href="perfil.html">Editar Perfil</a></li>
+                <li class="active"><a href="home.html">Home</a></li>
+                <li><a href="pesquisar-disciplina.html">Disciplinas</a></li>
+                <li><a href="disciplina-detalhe-visualizacao-envio.html">Visualizar Envio</a></li>
+            </ul>
+
+            <div class="sidebar-footer">
+                <a href="#" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Sair</a>
+                <a href="#"><i class="fas fa-cog"></i></a>
+            </div>
+        </nav>
+
+        <main class="content">
+            <header class="content-header">
+                <div class="user-info">
+                    <i class="fas fa-user-circle"></i> Olá, Professor(a)!
+                </div>
+            </header>
+
+            <div class="page-header-with-back">
+                <button class="back-button" onclick="window.history.back()">
+                    <i class="fas fa-chevron-left"></i> Visualização
+                </button>
+            </div>
+
+            <div class="main-content-card">
+                <h2 class="card-title">Status de envio:</h2>
+
+                <div class="status-info-grid">
+                    <div class="info-item">
+                        <span class="info-label">Status de envio:</span>
+                        <span class="info-value">Aguardando envio...</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Status de avaliação:</span>
+                        <span class="info-value">Não há notas.</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Data de entrega:</span>
+                        <span class="info-value">Quinta, 13 Jul 2025, 23:58</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Tempo restante:</span>
+                        <span class="info-value">7 dias, 2 horas e 41 minutos</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Última modificação:</span>
+                        <span class="info-value">Há 2 horas atrás</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Envio de arquivo:</span>
+                        <span class="info-value file-link">tarefa_02.pdf</span>
+                    </div>
+                    <div class="info-item full-width">
+                        <span class="info-label">Comentários:</span>
+                        <span class="info-value">Nenhum comentário</span>
+                    </div>
+                </div>
+
+                <div class="form-actions-bottom">
+                    <button type="button" class="secondary-button"
+                        onclick="window.location.href='disciplina-acompanhar-entrega.html?taskId=SUA_TAREFA_ID'">Acompanhar
+                        entregas</button>
+                    <button type="button" class="save-button" onclick="alert('Modificar tópico clicado!')">Modificar
+                        tópico</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../js/disciplina-detalhe-visualizacao-envio.js"></script>
+</body>
+
+</html>

@@ -1,41 +1,123 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
   <meta charset="UTF-8" />
-  <title>Criar Seção</title>
+  <title>TL - CRIAR SEÇÃO</title>
   <link rel="stylesheet" href="../css/geral.css" />
   <link rel="stylesheet" href="../css/criar-secao.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
+
 <body>
   <div class="layout">
     <nav class="sidebar">
-      <h3>Menu</h3>
-      <a href="home.html">Home</a>
-      <a href="pesquisar-disciplina.html">Pesquisar Disciplina</a>
-      <a href="perfil.html">Editar Perfil</a>
-      <button onclick="logout()">Sair</button>
+      <div class="sidebar-header">
+        <i class="fas fa-graduation-cap"></i>
+      </div>
+      <ul class="sidebar-menu">
+        <li><a href="config.html">Configurações</a></li>
+        <li><a href="criar-disciplina.html">Criar Disciplina</a></li>
+        <li><a href="criar-secao.html">Criar Sessão</a></li>
+        <li><a href="perfil.html">Editar Perfil</a></li>
+        <li class="active"><a href="home.html">Home</a></li>
+        <li><a href="pesquisar-disciplina.html">Disciplinas</a></li>
+        <li><a href="disciplina-detalhe-visualizacao-envio.html">Visualizar Envio</a></li>
+      </ul>
+
+      <div class="sidebar-footer">
+        <a href="#" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Sair</a>
+        <a href="#"><i class="fas fa-cog"></i></a>
+      </div>
     </nav>
 
     <main class="content">
-      <h2 id="boasVindas">Bem-vindo!</h2>
+      <header class="content-header">
+        <div class="user-info">
+          <i class="fas fa-user-circle"></i> Olá, Professor(a)!
+        </div>
+      </header>
 
-      <div class="form-container">
-        <h2>Nova Seção</h2>
-        <form id="formSecao">
-          <input type="text" id="titulo" placeholder="Título da seção *" required />
-          
-          <select id="tipo" required>
-            <option value="">Selecione o tipo</option>
-            <option value="lecture">Aula</option>
-            <option value="activity">Atividade</option>
-          </select>
-          
-          <label for="dueDateTime">Data e Hora de entrega (opcional):</label>
-          <input type="datetime-local" id="dueDateTime" />
+      <div class="page-header-with-back">
+        <button class="back-button" onclick="window.history.back()">
+          <i class="fas fa-chevron-left"></i> Criar seção: </button>
+      </div>
 
-          <input type="number" id="submissionLimit" placeholder="Limite de submissões (padrão 1)" min="1" />
+      <div class="main-content-card">
+        <h2 class="card-title preferences-title">Configurações da Seção</h2>
+        <form id="createSectionForm" class="create-section-form">
+          <div class="form-row">
+            <div class="form-group half-width">
+              <label for="sectionName">Nome da seção:</label> <input type="text" id="sectionName" name="sectionName"
+                placeholder="Nome da seção..." required>
+            </div>
+            <div class="form-group half-width">
+              <label for="submissionLimit">Definir limite de envios:</label>
+              <select id="submissionLimit" name="submissionLimit">
+                <option value="">Selecione...</option>
+                <option value="1">1 envio</option>
+                <option value="3">3 envios</option>
+                <option value="unlimited">Sem limite</option>
+              </select>
+            </div>
+          </div>
 
-          <button type="submit">Criar Seção</button>
+          <div class="form-row">
+            <div class="form-group half-width">
+              <label for="sectionType">Tipo de seção:</label> <select id="sectionType" name="sectionType">
+                <option value="">Selecione...</option>
+                <option value="leitura">Leitura</option>
+                <option value="atividade">Atividade</option>
+                <option value="aviso">Aviso</option>
+                <option value="forum">Fórum</option>
+              </select>
+            </div>
+            <div class="form-group half-width">
+              <label for="submissionSize">Definir tamanho do envio:</label>
+              <input type="text" id="submissionSize" name="submissionSize" placeholder="Digite...">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="defineSchedule">Definir horário:</label>
+            <select id="defineSchedule" name="defineSchedule">
+              <option value="">Selecione...</option>
+              <option value="fixed">Horário Fixo</option>
+              <option value="flexible">Horário Flexível</option>
+            </select>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group half-width">
+              <label for="startDate">Data de Início:</label>
+              <input type="date" id="startDate" name="startDate">
+            </div>
+            <div class="form-group half-width">
+              <label for="conclusionDate">Data de conclusão:</label>
+              <input type="date" id="conclusionDate" name="conclusionDate">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="fileUpload">Inserir arquivos:</label>
+            <div class="file-upload-dropzone" id="fileUploadDropzone">
+              <input type="file" id="fileUpload" name="fileUpload" multiple style="display: none;">
+              <p>Solte o arquivo aqui...</p>
+              <i class="fas fa-upload"></i>
+            </div>
+          </div>
+
+          <div class="form-group toggle-group right-align-toggle">
+            <label for="emailNotifications">Notificações por email:</label>
+            <label class="switch">
+              <input type="checkbox" id="emailNotifications" name="emailNotifications">
+              <span class="slider round"></span>
+            </label>
+          </div>
+
+          <div class="form-actions-bottom-right">
+            <button type="submit" class="save-button">Salvar</button>
+          </div>
         </form>
       </div>
     </main>
@@ -43,4 +125,5 @@
 
   <script src="../js/criar-secao.js"></script>
 </body>
+
 </html>
