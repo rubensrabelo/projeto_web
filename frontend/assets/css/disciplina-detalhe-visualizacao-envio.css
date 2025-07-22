@@ -1,25 +1,20 @@
-/* disciplina-detalhe-visualizacao-envio.css */
-
-/* Reutiliza variáveis de geral.css */
-
-/* === Cabeçalho da Página com Botão de Voltar === */
 .page-header-with-back {
   display: flex;
   align-items: center;
-  margin-bottom: 30px; /* Mais espaço abaixo do cabeçalho */
+  margin-bottom: 30px;
 }
 
 .page-header-with-back .back-button {
   background-color: var(--white);
   border: 1px solid var(--medium-gray-border);
-  border-radius: 25px; /* Formato oval */
-  width: auto; /* Largura se ajusta ao conteúdo */
-  padding: 10px 20px; /* Padding interno */
+  border-radius: 25px;
+  width: auto;
+  padding: 10px 20px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 1.2em;
-  color: var(--dark-gray-text); /* Cor do texto "Visualização" */
+  color: var(--dark-gray-text);
   cursor: pointer;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: background-color 0.3s ease, transform 0.2s ease;
@@ -32,17 +27,16 @@
 
 .page-header-with-back .back-button i {
   font-size: 1.1em;
-  margin-right: 10px; /* Espaço entre o ícone e o texto */
-  color: var(--primary-blue); /* Ícone em azul principal */
+  margin-right: 10px;
+  color: var(--primary-blue);
 }
 
-/* === Card Principal de Conteúdo === */
 .main-content-card {
   background-color: var(--white);
   border-radius: 8px;
   box-shadow: var(--card-shadow);
   padding: 30px;
-  margin-top: 0; /* Ajuste a margem superior se houver conflito */
+  margin-top: 0;
 }
 
 .main-content-card .card-title {
@@ -53,59 +47,57 @@
   text-align: left;
 }
 
-/* === Grid de Informações de Status === */
 .status-info-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Duas colunas em telas maiores */
-  gap: 15px; /* Espaço entre os itens */
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 15px;
 }
 
 .info-item {
-  background-color: var(--light-gray-bg); /* Fundo cinza claro para cada item */
+  background-color: var(--light-gray-bg);
   border-radius: 8px;
   padding: 15px 20px;
   display: flex;
-  flex-direction: column; /* Label em cima do valor */
+  flex-direction: column;
   text-align: left;
 }
 
 .info-item.full-width {
-    grid-column: 1 / -1; /* Ocupa todas as colunas disponíveis */
+    grid-column: 1 / -1;
 }
 
 .info-label {
   font-size: 0.9em;
-  color: #666; /* Cinza mais suave para o label */
+  color: #666;
   margin-bottom: 5px;
   font-weight: bold;
 }
 
 .info-value {
   font-size: 1.1em;
-  color: var(--dark-gray-text); /* Texto principal em cinza escuro */
+  color: var(--dark-gray-text);
   font-weight: normal;
 }
 
 .info-value.file-link {
-    color: var(--primary-blue); /* Azul para o link do arquivo */
+    color: var(--primary-blue);
     text-decoration: underline;
     cursor: pointer;
 }
 
-/* === Botões de Ação Inferiores === */
 .form-actions-bottom {
   display: flex;
-  justify-content: flex-end; /* Alinha os botões à direita */
-  gap: 15px; /* Espaço entre os botões */
-  margin-top: 40px; /* Mais espaço superior */
+  justify-content: flex-end;
+  gap: 15px;
+  margin-top: 40px;
   padding-top: 20px;
-  border-top: 1px solid #eee; /* Linha divisória */
+  border-top: 1px solid #eee;
 }
 
-.secondary-button { /* Novo estilo para "Acompanhar entregas" */
-    background-color: var(--white); /* Fundo branco */
-    color: var(--primary-blue); /* Texto azul */
-    border: 1px solid var(--primary-blue); /* Borda azul */
+.secondary-button {
+    background-color: var(--white);
+    color: var(--primary-blue);
+    border: 1px solid var(--primary-blue);
     padding: 12px 25px;
     border-radius: 5px;
     font-size: 1.1em;
@@ -115,17 +107,15 @@
 }
 
 .secondary-button:hover {
-    background-color: var(--primary-blue); /* Fundo azul no hover */
-    color: var(--white); /* Texto branco no hover */
+    background-color: var(--primary-blue);
+    color: var(--white);
 }
 
-/* Botão Salvar (reutilizado de geral.css mas com override no fundo) */
 .save-button {
-    /* Reutiliza estilos de padding, border, radius, font-size, cursor, transition, font-weight do geral.css */
-    background-color: var(--primary-blue); /* Fundo azul principal */
-    color: var(--white); /* Texto branco */
+    background-color: var(--primary-blue);
+    color: var(--white);
 }
 
 .save-button:hover {
-    background-color: #121A5E; /* Tom mais escuro do azul */
+    background-color: #121A5E;
 }

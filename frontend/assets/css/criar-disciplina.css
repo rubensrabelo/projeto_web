@@ -1,8 +1,3 @@
-/* criar-disciplina.css */
-
-/* Reutiliza variáveis de geral.css */
-
-/* === Cabeçalho da Página com Botão de Voltar (Reutilizado de disciplina-detalhe-visualizacao-envio.css) === */
 .page-header-with-back {
   display: flex;
   align-items: center;
@@ -12,14 +7,14 @@
 .page-header-with-back .back-button {
   background-color: var(--white);
   border: 1px solid var(--medium-gray-border);
-  border-radius: 25px; /* Formato oval */
-  width: auto; /* Largura se ajusta ao conteúdo */
-  padding: 10px 20px; /* Padding interno */
+  border-radius: 25px;
+  width: auto;
+  padding: 10px 20px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 1.2em;
-  color: var(--dark-gray-text); /* Cor do texto "Criar disciplina" */
+  color: var(--dark-gray-text);
   cursor: pointer;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: background-color 0.3s ease, transform 0.2s ease;
@@ -32,11 +27,10 @@
 
 .page-header-with-back .back-button i {
   font-size: 1.1em;
-  margin-right: 10px; /* Espaço entre o ícone e o texto */
-  color: var(--primary-blue); /* Ícone em azul principal */
+  margin-right: 10px;
+  color: var(--primary-blue);
 }
 
-/* === Card Principal de Conteúdo (Reutilizado de outras páginas) === */
 .main-content-card {
   background-color: var(--white);
   border-radius: 8px;
@@ -53,55 +47,51 @@
   text-align: left;
 }
 
-/* O título "Preferências" na imagem tem um estilo visual de título de seção com ícone */
-/* Se quiser um ícone, adicione-o ao HTML. Aqui, apenas estilizo o texto. */
 .main-content-card .preferences-title {
-    display: flex; /* Para alinhar o ícone com o texto, se houver */
+    display: flex;
     align-items: center;
     font-size: 1.8em;
     color: var(--dark-gray-text);
     margin-top: 0;
     margin-bottom: 25px;
     text-align: left;
-    border-bottom: 1px solid var(--medium-gray-border); /* Linha de separação */
+    border-bottom: 1px solid var(--medium-gray-border);
     padding-bottom: 10px;
 }
 
-/* Estilo para o ícone se for adicionado ao card-title com a classe preferences-title */
 .main-content-card .preferences-title .fas {
     font-size: 1.2em;
     color: var(--primary-blue);
     margin-right: 10px;
 }
 
-/* === Formulário de Criação de Disciplina === */
 .create-discipline-form {
     display: flex;
     flex-direction: column;
-    gap: 20px; /* Espaço entre os grupos de formulário */
+    gap: 20px;
 }
 
 .create-discipline-form .form-row {
     display: flex;
     gap: 20px;
-    flex-wrap: wrap; /* Permite quebrar linha em telas menores */
+    flex-wrap: wrap;
 }
 
 .create-discipline-form .form-group {
-    flex: 1; /* Permite que os grupos ocupem o espaço igual */
+    flex: 1;
     display: flex;
     flex-direction: column;
     text-align: left;
 }
 
 .create-discipline-form .form-group.large-width {
-    flex: 2; /* Ocupa mais espaço para o nome da disciplina */
-    min-width: 250px; /* Largura mínima para o nome */
+    flex: 2;
+    min-width: 250px;
 }
 
 .create-discipline-form .form-group.small-width {
-    flex: 1; /* Ocupa menos espaço para a quantidade de aulas */
-    min-width: 150px; /* Largura mínima para o seletor */
+    flex: 1;
+    min-width: 150px;
 }
 
 .create-discipline-form label {
@@ -134,22 +124,21 @@
 }
 
 .create-discipline-form textarea {
-    resize: vertical; /* Permite redimensionar verticalmente */
-    min-height: 80px; /* Altura mínima para a descrição */
+    resize: vertical;
+    min-height: 80px;
 }
 
-/* === Botão Salvar (Posicionado no canto inferior direito) === */
 .form-actions-bottom-right {
     display: flex;
-    justify-content: flex-end; /* Alinha o conteúdo à direita */
+    justify-content: flex-end;
     margin-top: 30px;
     padding-top: 20px;
-    border-top: 1px solid var(--medium-gray-border); /* Linha divisória */
+    border-top: 1px solid var(--medium-gray-border);
 }
 
 .form-actions-bottom-right .save-button {
-    padding: 12px 40px; /* Padding ajustado para o tamanho do botão "Salvar" */
-    font-size: 1.2em; /* Fonte um pouco maior */
+    padding: 12px 40px;
+    font-size: 1.2em;
     background-color: var(--primary-blue);
     color: var(--white);
     border: none;
@@ -160,5 +149,5 @@
 }
 
 .form-actions-bottom-right .save-button:hover {
-    background-color: #121A5E; /* Tom mais escuro do azul */
+    background-color: #121A5E;
 }

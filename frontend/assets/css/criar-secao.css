@@ -1,8 +1,3 @@
-/* criar-secao.css */
-
-/* Reutiliza variáveis de geral.css */
-
-/* === Cabeçalho da Página com Botão de Voltar (Reutilizado) === */
 .page-header-with-back {
   display: flex;
   align-items: center;
@@ -12,14 +7,14 @@
 .page-header-with-back .back-button {
   background-color: var(--white);
   border: 1px solid var(--medium-gray-border);
-  border-radius: 25px; /* Formato oval */
+  border-radius: 25px;
   width: auto;
   padding: 10px 20px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 1.2em;
-  color: var(--dark-gray-text); /* Cor do texto "Criar seção" */
+  color: var(--dark-gray-text);
   cursor: pointer;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: background-color 0.3s ease, transform 0.2s ease;
@@ -36,7 +31,6 @@
   color: var(--primary-blue);
 }
 
-/* === Card Principal de Conteúdo (Reutilizado) === */
 .main-content-card {
   background-color: var(--white);
   border-radius: 8px;
@@ -53,7 +47,6 @@
   text-align: left;
 }
 
-/* Título "Configurações da Seção" */
 .main-content-card .preferences-title {
     display: flex;
     align-items: center;
@@ -66,14 +59,13 @@
     padding-bottom: 10px;
 }
 
-.main-content-card .preferences-title .fas { /* Se adicionar um ícone */
+.main-content-card .preferences-title .fas {
     font-size: 1.2em;
     color: var(--primary-blue);
     margin-right: 10px;
 }
 
-/* === Formulário de Criação de Seção === */
-.create-section-form { /* CLASSE AJUSTADA AQUI */
+.create-section-form {
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -127,7 +119,6 @@
   outline: none;
 }
 
-/* === Estilo para a área de Dropzone de Arquivos === */
 .file-upload-dropzone {
     border: 2px dashed var(--medium-gray-border);
     border-radius: 8px;
@@ -159,8 +150,7 @@
     color: var(--primary-blue);
 }
 
-/* === Estilo para Toggle Switch (Reutilizado de config.css) === */
-.create-section-form .toggle-group { /* CLASSE AJUSTADA AQUI */
+.create-section-form .toggle-group {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -170,13 +160,12 @@
     margin-top: 10px;
 }
 
-.create-section-form .toggle-group label:first-child { /* A label de texto */
+.create-section-form .toggle-group label:first-child {
     margin-bottom: 0;
     flex-shrink: 0;
     margin-right: 15px;
 }
 
-/* === Botão Salvar (Posicionado no canto inferior direito) === */
 .form-actions-bottom-right {
     display: flex;
     justify-content: flex-end;

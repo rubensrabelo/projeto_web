@@ -1,8 +1,3 @@
-/* pesquisar-disciplina.css */
-
-/* Reutiliza variáveis de geral.css */
-
-/* Container da barra de pesquisa */
 .search-bar-container {
   display: flex;
   align-items: center;
@@ -47,7 +42,6 @@
   font-size: 1.1em;
 }
 
-/* Título da Seção Disciplinas */
 .section-title {
   font-size: 1.6em;
   color: var(--dark-gray-text);
@@ -55,14 +49,12 @@
   margin-bottom: 20px;
 }
 
-/* Lista de Disciplinas (inclui itens existentes e o novo card) */
 .disciplinas-list {
   display: flex;
-  flex-direction: column; /* Itens um abaixo do outro */
-  gap: 15px; /* Espaçamento entre os itens da lista */
+  flex-direction: column;
+  gap: 15px;
 }
 
-/* Estilo para itens de disciplina existentes */
 .disciplina-item {
   background-color: var(--white);
   border-radius: 8px;
@@ -117,14 +109,12 @@
   color: var(--primary-blue);
 }
 
-
-/* --- NOVO ESTILO: Adicionar nova disciplina --- */
 .add-disciplina-item {
   margin-top: 17px;
     background-color: var(--white);
-    border: 2px dashed var(--medium-gray-border); /* Borda tracejada */
+    border: 2px dashed var(--medium-gray-border);
     border-radius: 8px;
-    box-shadow: none; /* Remove a sombra padrão */
+    box-shadow: none;
     padding: 15px 20px;
     display: flex;
     align-items: center;
@@ -134,8 +124,8 @@
 }
 
 .add-disciplina-item:hover {
-    background-color: var(--light-gray-bg); /* Fundo cinza claro no hover */
-    border-color: var(--primary-blue); /* Borda azul no hover */
+    background-color: var(--light-gray-bg);
+    border-color: var(--primary-blue);
 }
 
 .add-item-content {
@@ -143,17 +133,17 @@
     align-items: center;
     gap: 15px;
     font-size: 1.2em;
-    color: var(--dark-gray-text); /* Texto cinza escuro */
+    color: var(--dark-gray-text);
 }
 
 .add-item-content .fas {
     font-size: 1.5em;
-    color: var(--primary-blue); /* Ícone em azul principal */
+    color: var(--primary-blue);
 }
 
 .add-item-button {
-    font-size: 2em; /* Tamanho do ícone de adição */
-    color: var(--primary-blue); /* Ícone de adição em azul principal */
+    font-size: 2em;
+    color: var(--primary-blue);
     display: flex;
     align-items: center;
     justify-content: center;

@@ -1,5 +1,3 @@
-/* home.css */
-
 .disciplinas-section {
   margin-top: 30px;
 }
@@ -12,16 +10,12 @@
 
 .disciplinas-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Colunas responsivas */
-  gap: 25px; /* Espaçamento entre os cards */
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 25px;
   margin-bottom: 20px;
 }
 
-/* MUDANÇA AQUI: 
-   Mudamos de .disciplina-card para .disciplina para corresponder ao JS.
-   Ajustamos a estrutura interna para o que o JS está gerando.
-*/
-.disciplina { /* Corresponde a divDisciplina.className = "disciplina" */
+.disciplina {
   background-color: var(--white);
   border-radius: 8px;
   box-shadow: var(--card-shadow);
@@ -37,40 +31,36 @@
   transform: translateY(-5px);
 }
 
-.link-disciplina { /* Corresponde a link.className = "link-disciplina" */
-  text-decoration: none; /* Remove sublinhado */
-  color: inherit; /* Herda a cor do pai para os textos */
-  display: flex; /* Permite centralizar o conteúdo dentro do link */
+.link-disciplina {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%; /* Ocupa toda a largura do card */
+  width: 100%;
 }
 
-/* Estilos para o conteúdo dentro do link gerado pelo JS */
-.disciplina .link-disciplina h3 { /* Isso será o nome do curso (curso.name) */
+.disciplina .link-disciplina h3 {
   font-size: 1.4em;
   color: var(--text-color-dark);
   margin-bottom: 8px;
   font-weight: bold;
-  margin-top: 0; /* Garante que não tenha margem superior indesejada */
+  margin-top: 0;
 }
 
-.disciplina .link-disciplina p { /* Isso será o horário do curso (curso.classSchedule) */
+.disciplina .link-disciplina p {
   font-size: 0.9em;
   color: #666;
-  margin-bottom: 0; /* Garante que não tenha margem inferior indesejada */
+  margin-bottom: 0;
 }
 
-/* Adicionando ícone e botão "Entrar na disciplina" conforme o design original,
-   mesmo que o JS atual não os esteja gerando. Se você quiser que o JS os gere,
-   terá que ajustar o innerHTML dele. Por enquanto, só o estilo se o JS for atualizado. */
-.disciplina .card-icon { /* Se o JS gerar este elemento */
+.disciplina .card-icon {
   font-size: 40px;
   color: var(--primary-blue);
   margin-bottom: 15px;
 }
 
-.disciplina .card-button { /* Se o JS gerar este elemento */
+.disciplina .card-button {
   background-color: var(--primary-blue);
   color: var(--white);
   border: none;
@@ -79,13 +69,12 @@
   cursor: pointer;
   font-size: 1em;
   transition: background-color 0.3s ease;
-  margin-top: 20px; /* Adiciona espaçamento acima do botão */
+  margin-top: 20px;
 }
 
 .disciplina .card-button:hover {
   background-color: #121A5E;
 }
-
 
 .view-all {
   text-align: right;

@@ -1,23 +1,12 @@
-/* perfil.css */
-
-/* Reutiliza variáveis de geral.css:
-   --primary-blue
-   --light-gray-bg
-   --white
-   --text-color-dark
-   --card-shadow
-*/
-
-/* Container principal do formulário, estilizado como um card */
 .profile-card {
   background-color: var(--white);
   border-radius: 8px;
   box-shadow: var(--card-shadow);
   padding: 30px;
-  margin-top: 30px; /* Espaço do cabeçalho */
+  margin-top: 30px;
 }
 
-.profile-card .card-title { /* Título "Meu Perfil" */
+.profile-card .card-title {
   font-size: 2em;
   color: var(--text-color-dark);
   margin-top: 0;
@@ -25,7 +14,7 @@
   text-align: center;
 }
 
-.profile-form .form-group { /* Cada grupo de label + input */
+.profile-form .form-group {
   margin-bottom: 20px;
 }
 
@@ -40,12 +29,12 @@
 .profile-form input[type="text"],
 .profile-form input[type="email"],
 .profile-form input[type="password"] {
-  width: calc(100% - 20px); /* 100% menos padding */
+  width: calc(100% - 20px);
   padding: 12px 10px;
   border: 1px solid #ddd;
   border-radius: 5px;
   font-size: 1em;
-  box-sizing: border-box; /* Inclui padding e borda na largura total */
+  box-sizing: border-box;
   transition: border-color 0.3s ease;
 }
 
@@ -56,15 +45,15 @@
   outline: none;
 }
 
-.profile-form input[readonly] { /* Estilo para campos somente leitura (email) */
+.profile-form input[readonly] {
   background-color: #f5f5f5;
   cursor: not-allowed;
 }
 
-.form-actions { /* Container para os botões Salvar/Cancelar */
+.form-actions {
   display: flex;
-  justify-content: flex-end; /* Alinha botões à direita */
-  gap: 15px; /* Espaço entre os botões */
+  justify-content: flex-end;
+  gap: 15px;
   margin-top: 30px;
 }
 
