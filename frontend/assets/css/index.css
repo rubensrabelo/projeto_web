@@ -12,8 +12,14 @@
 
 .container h1 {
   color: #001481;
+  font-size: 2.3rem;
+  margin-bottom: -20px;
+}
+
+.container p {
+  color: #333;
   margin-bottom: 20px;
-  font-size: 2.5rem;
+  font-size: 1.3rem;
 }
 
 .botoes {
