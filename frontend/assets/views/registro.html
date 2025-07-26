@@ -6,24 +6,36 @@
   <title>Registrar</title>
   <link rel="stylesheet" href="../css/user.css">
   <link rel="stylesheet" href="../css/registro.css">
+  <script src="https://kit.fontawesome.com/5d489cb9a9.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
-  <form id="registroForm">
-    <h2>Registrar</h2>
-    <input type="text" name="firstname" placeholder="Nome" required />
-    <input type="text" name="lastname" placeholder="Sobrenome" required />
-    <input type="email" name="email" placeholder="E-mail" required />
-    <input type="password" name="password" placeholder="Senha" required />
-    <select name="role" required>
-      <option value="">Selecione o papel</option>
-      <option value="student">Estudante</option>
-      <option value="teacher">Professor</option>
-    </select>
-    <button type="submit">Registrar</button>
-    <p><a href="login.html">Já tem uma conta? Entrar</a></p>
-    <p><a href="../../index.html">← Voltar para a página inicial</a></p>
-  </form>
+<body>
+  <div class="layout">
+    <div class="lado-esquerdo">
+      <i class="fa-solid fa-address-card fa-10x" style="color: #ffffff;"></i>
+    </div>
+    <div class="lado-direito">
+      <form id="registroForm">
+        <i class="fa-solid fa-graduation-cap fa-6x" style="color: #001481;"></i>
+        <h2>Registrar</h2>
+        <input type="text" name="firstname" placeholder="Nome" required />
+        <input type="text" name="lastname" placeholder="Sobrenome" required />
+        <input type="email" name="email" placeholder="E-mail" required />
+        <input type="password" name="password" placeholder="Senha" required />
+        <select name="role" required>
+          <option value="">Selecione o papel</option>
+          <option value="student">Estudante</option>
+          <option value="teacher">Professor</option>
+        </select>
+        <button type="submit">Registrar</button>
+        <p><a href="login.html">Já tem conta? Entrar</a></p>
+        <p><a href="../../index.html">← Voltar</a></p>
+      </form>
+    </div>
+  </div>
+</body>
+
 
   <script src="../js/registro.js"></script>
 </body>

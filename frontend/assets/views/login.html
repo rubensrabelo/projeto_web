@@ -5,16 +5,25 @@
   <title>Login</title>
   <link rel="stylesheet" href="../css/user.css">
   <link rel="stylesheet" href="../css/login.css">
+  <script src="https://kit.fontawesome.com/5d489cb9a9.js" crossorigin="anonymous"></script>
 </head>
 <body>
-  <form id="loginForm">
-    <h2>Entrar</h2>
-    <input type="email" name="email" placeholder="E-mail" required />
-    <input type="password" name="password" placeholder="Senha" required />
-    <button type="submit">Entrar</button>
-    <p><a href="registro.html">Ainda não tem conta? Cadastre-se</a></p>
-    <p><a href="../../index.html">← Voltar para a página inicial</a></p>
-  </form>
+  <div class="layout">
+    <div class="lado-esquerdo">
+      <i class="fa-solid fa-chalkboard-user fa-10x" style="color: #ffffff;"></i>
+    </div>
+    <div class="lado-direito">
+      <form id="loginForm">
+        <i class="fa-solid fa-graduation-cap fa-6x" style="color: #001481;"></i>
+        <h2>Entrar</h2>
+        <input type="text" placeholder="Login" required />
+        <input type="password" placeholder="Senha" required />
+        <button type="submit">Entrar</button>
+        <p><a href="registro.html">Não tem conta? Cadastre-se</a></p>
+        <p><a href="../../index.html">← Voltar</a></p>
+      </form>
+    </div>
+  </div>
 
   <script src="../js/login.js"></script>
 </body>
