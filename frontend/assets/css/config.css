@@ -258,14 +258,25 @@
 
 .preference-item label {
     font-size: 1em;
-    color: var(--dark-gray-text);
+    color: 000080;
     font-weight: bold;
     margin-bottom: 5px;
 }
 
 .preference-item select {
-    background-color: var(--white);
-    cursor: pointer;
+  background-color: #f0f0f0;       /* Fundo cinza claro */
+  border: 1px solid #ccc;          /* Borda sutil */
+  border-radius: 5px;              /* Cantos arredondados */
+  padding: 10px;                   /* Espaço interno */
+  font-size: 1em;                  /* Tamanho da fonte */
+  color: #333;                     /* Cor do texto */
+  appearance: none;               /* Remove aparência padrão */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='5'%3E%3Cpath fill='%23333' d='M0 0l5 5 5-5z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 10px 5px;
 }
 
 .toggle-group {
@@ -306,7 +317,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: var(--medium-gray-border);
+  background-color: lightgray;
   -webkit-transition: .4s;
   transition: .4s;
 }
@@ -318,7 +329,7 @@
   width: 18px;
   left: 4px;
   bottom: 4px;
-  background-color: var(--white);
+  background-color: darkgray;
   -webkit-transition: .4s;
   transition: .4s;
 }
@@ -374,10 +385,10 @@ input:checked + .slider:before {
 }
 
 .cancel-button {
-  background-color: var(--medium-gray-border);
-  color: var(--dark-gray-text);
+  background-color: #121A5E;
+  color: white;
 }
 
 .cancel-button:hover {
-  background-color: var(--light-gray-hover);
+  background-color: #0f153a;
 }
