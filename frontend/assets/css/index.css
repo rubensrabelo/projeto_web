@@ -1,19 +1,57 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 90px 100px;
+  border: solid 2px #001481;
+  border-radius: 12px;
+  background-color: white;
+  box-shadow: 0 0 15px rgba(0, 32, 215, 0.3);
+  margin: auto;
+}
+
+.container h1 {
+  color: #001481;
+  margin-bottom: 20px;
+  font-size: 2.5rem;
+}
+
+.botoes {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: nowrap;
+}
+
 .botao {
-  display: block;          
-  width: 200px;           
-  margin: 10px auto;       
-  background-color: #007bff;
-  color: white;
-  padding: 12px 0;
-  border-radius: 5px;
+  width: 100px;
+  height: 80px;
+  background-color: #001481;
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
   text-align: center;
-  text-decoration: none;
+  padding: 20px;
+  color: white;
   font-weight: bold;
-  transition: background 0.3s;
+  text-decoration: none;
+  border: none;
+  transition: transform 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .botao:hover {
-  background-color: white;
-  color: #007bff;
-  border: #007bff solid 1px;
+  transform: scale(1.05);
+  background-color: #0020D7;
+  color: white;
+  text-decoration: none;
+}
+
+
+.botao i {
+  font-size: 32px;
+  margin-bottom: 20px;
 }
