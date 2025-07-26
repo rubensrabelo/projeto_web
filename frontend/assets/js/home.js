@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       divDisciplina.className = "disciplina"; // Corresponde ao nosso CSS
 
       const link = document.createElement("a");
-      link.href = `secoes.html?id=${curso._id}`;
+      link.href = `disciplina-detalhe-home.html?id=${curso._id}`;
       link.className = "link-disciplina"; // Corresponde ao nosso CSS
       link.innerHTML = `
         <div class="card-icon">
