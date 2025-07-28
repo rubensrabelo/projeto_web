@@ -35,7 +35,6 @@ document.addEventListener("DOMContentLoaded", async () => {
       disciplinaNome = data.name || disciplinaNome;
     }
 
-    document.getElementById("discipline-name-back").textContent = disciplinaNome;
     document.getElementById("discipline-main-title").textContent = disciplinaNome;
 
     const topicsRes = await fetch(`http://localhost:3000/topics/course/${disciplinaId}`, {
