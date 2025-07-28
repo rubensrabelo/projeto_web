@@ -8,14 +8,13 @@ document.addEventListener("DOMContentLoaded", async () => {
   const urlParams = new URLSearchParams(window.location.search);
   const disciplinaId = urlParams.get("id");
   if (!disciplinaId) {
-    alert("ID da disciplina não foi fornecido na URL.");
+    alert("ID da disciplina não foi fornecido.");
     return;
   }
 
   window.currentDisciplineId = disciplinaId;
 
   try {
-    // Busca dados do usuário
     const userRes = await fetch("http://localhost:3000/users/me", {
       headers: { Authorization: `Bearer ${token}` },
     });
@@ -71,18 +70,17 @@ document.addEventListener("DOMContentLoaded", async () => {
             </ul>
 
             <div class="buttons-container">
-              <button class="btn-edit-topic" onclick="editarTopico('${topic._id}')">
-                <i class="fas fa-edit"></i>
-              </button>
               <button class="btn-add-file" onclick="adicionarArquivo('${topic._id}')">
                 <i class="fas fa-paperclip"></i>
+              </button>
+              <button class="btn-edit-topic" onclick="editarTopico('${topic._id}')">
+                <i class="fas fa-edit"></i>
               </button>
             </div>
           </div>
         `;
 
         container.appendChild(card);
-
         carregarArquivos(topic._id, token);
       }
     } else {
@@ -125,24 +123,27 @@ async function carregarArquivos(topicId, token) {
           fileLink.textContent = file.name;
           fileLink.target = "_blank";
           fileLink.className = "file-link";
+          fileLink.setAttribute("download", file.name);
 
           const btnGroup = document.createElement("div");
           btnGroup.className = "file-btn-group";
 
-          const btnEdit = document.createElement("button");
-          btnEdit.className = "btn-edit-file";
-          btnEdit.title = "Editar arquivo";
-          btnEdit.innerHTML = `<i class="fas fa-edit"></i>`;
-          btnEdit.onclick = () => {
-            window.location.href = `editar-arquivo.html?fileId=${file._id}`;
-          };
+          const btnDownload = document.createElement("a");
+          btnDownload.href = `http://localhost:3000${file.url}`;;
+          btnDownload.download = file.savedName;
+          btnDownload.className = "btn-download-file";
+          btnDownload.title = "Baixar";
+          btnDownload.target = "_blank";
+          btnDownload.innerHTML = `<i class="fas fa-download"></i>`;
+
+          console.log(btnDownload)
 
           const btnDelete = document.createElement("button");
           btnDelete.className = "btn-delete-file";
-          btnDelete.title = "Excluir arquivo";
+          btnDelete.title = "Excluir";
           btnDelete.innerHTML = `<i class="fas fa-trash"></i>`;
           btnDelete.onclick = async () => {
-            if (confirm(`Deseja realmente excluir o arquivo "${file.name}"?`)) {
+            if (confirm(`Deseja excluir o arquivo "${file.name}"?`)) {
               try {
                 const res = await fetch(`http://localhost:3000/files/delete/${file._id}`, {
                   method: "DELETE",
@@ -154,12 +155,12 @@ async function carregarArquivos(topicId, token) {
                   alert("Erro ao excluir arquivo.");
                 }
               } catch {
-                alert("Erro na requisição para excluir arquivo.");
+                alert("Erro na requisição.");
               }
             }
           };
 
-          btnGroup.appendChild(btnEdit);
+          btnGroup.appendChild(btnDownload);
           btnGroup.appendChild(btnDelete);
 
           li.appendChild(fileLink);
@@ -168,8 +169,7 @@ async function carregarArquivos(topicId, token) {
           filesListUl.appendChild(li);
         });
       } else {
-        filesListUl.innerHTML = "<li>Nenhum arquivo adicionado.</li>";
-        filesListUl.style.color = "#666";
+        filesListUl.innerHTML = "<li>Nenhum arquivo.</li>";
       }
     } else {
       filesListUl.innerHTML = "<li style='color: red;'>Erro ao carregar arquivos.</li>";

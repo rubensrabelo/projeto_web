@@ -158,61 +158,51 @@
 
 .file-item {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  padding: 6px 0;
+  align-items: center;
+  padding: 8px 4px;
   border-bottom: 1px solid #ddd;
-  gap: 10px;
-}
-
-.file-item:last-child {
-  border-bottom: none;
 }
 
 .file-link {
-  flex-grow: 1;
-  color: var(--primary-blue);
+  color: #333;
   text-decoration: none;
   font-weight: 500;
-  white-space: nowrap;
+  max-width: 70%;
   overflow: hidden;
   text-overflow: ellipsis;
-  transition: color 0.3s ease;
-}
-
-.file-link:hover {
-  color: #004f94;
-  text-decoration: underline;
+  white-space: nowrap;
 }
 
 .file-btn-group {
   display: flex;
-  gap: 8px;
+  gap: 6px;
 }
 
-.btn-edit-file,
-.btn-delete-file {
-  background: none;
+.btn-delete-file,
+.btn-download-file {
+  background-color: #007bff;
+  color: white;
   border: none;
-  color: var(--icon-gray);
-  cursor: pointer;
-  font-size: 1.2em;
-  padding: 4px 6px;
+  padding: 6px 8px;
   border-radius: 4px;
-  transition: color 0.3s ease, background-color 0.2s ease;
+  cursor: pointer;
 }
 
-.btn-edit-file:hover {
-  color: #187bcd;
-  background-color: #dceeff;
+.btn-delete-file {
+  background-color: #dc3545;
 }
 
-.btn-delete-file:hover {
-  color: #d11a2a;
-  background-color: #fcdcdc;
+.btn-download-file {
+  background-color: #28a745;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
 }
 
-
+.file-btn-group i {
+  pointer-events: none;
+}
 
 .section-card-body > div {
   display: flex;
