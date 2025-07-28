@@ -1,9 +1,10 @@
 const Topic = require("../models/Topic");
 
 class TopicService {
-    async create({ title, type, dueDateTime, submissionLimit }, courseId) {
+    async create({ title, description, type, dueDateTime, submissionLimit }, courseId) {
         return await Topic.create({
             title,
+            description,
             type,
             dueDateTime,
             submissionLimit,

@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     return window.location.href = "../../index.html";
   }
 
-  // Carregar dados do usuário para o cabeçalho
+  // Carregar dados do usuário
   try {
     const userRes = await fetch("http://localhost:3000/users/me", {
       headers: { Authorization: `Bearer ${token}` }
@@ -19,7 +19,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     console.error("Erro ao carregar dados do usuário:", err);
   }
 
-  // Submissão do formulário
   const form = document.getElementById("createSectionForm");
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
@@ -28,33 +27,31 @@ document.addEventListener("DOMContentLoaded", async () => {
     const submissionLimitRaw = document.getElementById("submissionLimit").value;
     const type = document.getElementById("sectionType").value;
     const dueDateTimeRaw = document.getElementById("dueDateTime").value;
+    const description = document.getElementById("description").value.trim();
 
     if (!title || !type) {
       alert("Por favor, preencha todos os campos obrigatórios.");
       return;
     }
 
-    // Ajusta submissionLimit: 0 significa sem limite, que pode ser tratado como Infinity ou null no backend
     const submissionLimit = submissionLimitRaw === "0" ? 0 : Number(submissionLimitRaw);
-
-    // Converte a data de string para objeto Date ou undefined se vazio
     const dueDateTime = dueDateTimeRaw ? new Date(dueDateTimeRaw) : undefined;
 
-    // Obter ID da disciplina da URL
     const urlParams = new URLSearchParams(window.location.search);
     const courseId = urlParams.get("disciplineId");
     if (!courseId) {
-      alert("ID da disciplina não encontrado na URL. Não é possível criar a seção.");
+      alert("ID da disciplina não encontrado na URL.");
       return;
     }
 
-    // Monta o payload
     const payload = {
       title,
       type,
       submissionLimit,
       course: courseId,
+      description,
     };
+
     if (dueDateTime) {
       payload.dueDateTime = dueDateTime.toISOString();
     }
@@ -78,8 +75,8 @@ document.addEventListener("DOMContentLoaded", async () => {
         alert(`Erro ao criar seção: ${errorData.message || res.statusText}`);
       }
     } catch (err) {
-      console.error("Erro na requisição de criação de seção:", err);
-      alert("Erro de comunicação com o servidor ao criar seção.");
+      console.error("Erro na requisição:", err);
+      alert("Erro de comunicação com o servidor.");
     }
   });
 });

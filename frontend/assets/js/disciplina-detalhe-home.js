@@ -119,7 +119,7 @@ async function carregarArquivos(topicId, token) {
           li.className = "file-item";
 
           const fileLink = document.createElement("a");
-          fileLink.href = file.url;
+          fileLink.href = `http://localhost:3000${file.url}`;
           fileLink.textContent = file.name;
           fileLink.target = "_blank";
           fileLink.className = "file-link";
@@ -135,8 +135,6 @@ async function carregarArquivos(topicId, token) {
           btnDownload.title = "Baixar";
           btnDownload.target = "_blank";
           btnDownload.innerHTML = `<i class="fas fa-download"></i>`;
-
-          console.log(btnDownload)
 
           const btnDelete = document.createElement("button");
           btnDelete.className = "btn-delete-file";

@@ -3,7 +3,7 @@ const TopicService = require("../services/TopicService");
 
 class TopicController {
     async create(req, res) {
-        const { title, type, dueDateTime, submissionLimit } = req.body;
+        const { title, description, type, dueDateTime, submissionLimit } = req.body;
         const { courseId } = req.params;
         const teacherId = req.user.id;
 
@@ -15,7 +15,7 @@ class TopicController {
             if (course.teacher.toString() !== teacherId)
                 return res.status(403).json({ error: "You are not the teacher of this course." });
 
-            const topicData = { title, type, dueDateTime, submissionLimit };
+            const topicData = { title, description, type, dueDateTime, submissionLimit };
             const topic = await TopicService.create(topicData, courseId);
 
             res.status(201).json(topic);

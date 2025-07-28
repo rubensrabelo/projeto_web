@@ -7,7 +7,6 @@
   <title>Editar Seção</title>
   <link rel="stylesheet" href="../css/geral.css" />
   <link rel="stylesheet" href="../css/editar-secao.css" />
-
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
@@ -15,7 +14,7 @@
 <body>
   <div class="layout">
     <div class="hamburger-menu">
-        <i class="fas fa-bars"></i>
+      <i class="fas fa-bars"></i>
     </div>
     <div class="overlay"></div>
 
@@ -25,10 +24,10 @@
       </div>
 
       <ul class="sidebar-menu">
-        <li><a href="home.html"> </i> Home</a></li>
-        <li><a href="pesquisar-disciplina.html"> </i> Disciplinas</a></li>
-        <li class="active"><a href="editar-secao.html"> </i> Editar Seção</a></li>
-        <li><a href="perfil.html"></i> Editar Perfil</a></li>
+        <li><a href="home.html">Home</a></li>
+        <li><a href="pesquisar-disciplina.html">Disciplinas</a></li>
+        <li class="active"><a href="#">Editar Seção</a></li>
+        <li><a href="perfil.html">Editar Perfil</a></li>
       </ul>
 
       <div class="sidebar-footer">
@@ -40,7 +39,7 @@
     <main class="content">
       <header class="content-header">
         <div class="user-info">
-          <i class="fas fa-user-circle"></i> <span id="boasVindas">Olá, Aluno(a)!</span>
+          <i class="fas fa-user-circle"></i> <span id="boasVindas">Olá, Professor(a)!</span>
         </div>
       </header>
 
@@ -62,6 +61,9 @@
 
           <label for="submissionLimit">Limite de Envio</label>
           <input type="number" id="submissionLimit" name="submissionLimit" min="1" value="1" />
+
+          <label for="description">Descrição</label>
+          <textarea id="description" name="description" rows="4" placeholder="Digite uma descrição (opcional)"></textarea>
 
           <button type="submit">Salvar Alterações</button>
         </form>
