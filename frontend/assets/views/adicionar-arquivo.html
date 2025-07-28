@@ -7,23 +7,43 @@
   <title>Adicionar Arquivo</title>
   <link rel="stylesheet" href="../css/geral.css" />
   <link rel="stylesheet" href="../css/adicionar-arquivo.css" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 
 <body>
   <div class="layout">
+    <div class="hamburger-menu">
+        <i class="fas fa-bars"></i>
+    </div>
+    <div class="overlay"></div>
+
     <nav class="sidebar">
-      <h3>Menu</h3>
-      <a href="home.html">Home</a>
-      <a href="pesquisar-disciplina.html">Pesquisar Disciplina</a>
-      <a href="perfil.html">Editar Perfil</a>
-      <button onclick="logout()">Sair</button>
+      <div class="sidebar-header">
+        <i class="fas fa-graduation-cap"></i>
+        </div>
+
+      <ul class="sidebar-menu">
+        <li class="active"><a href="home.html"></i> Home</a></li>
+        <li><a href="pesquisar-disciplina.html"></i> Disciplinas</a></li>
+      </ul>
+
+      <div class="sidebar-footer">
+        <a href="#" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Sair</a>
+        <a href="config.html"><i class="fas fa-cog"></i></a>
+      </div>
     </nav>
 
     <main class="content">
-      <h2 id="boasVindas">Bem-vindo!</h2>
+      <header class="content-header">
+        <div class="user-info">
+          <i class="fas fa-user-circle"></i> <span id="boasVindas">Olá, Aluno(a)!</span>
+        </div>
+      </header>
 
-      <div class="form-container">
-        <h2>Adicionar Arquivo à Seção</h2>
+      <div class="main-card">
+        <h2 class="card-title">Adicionar Arquivo à Seção</h2>
         <form id="formArquivo">
           <input type="text" id="nomeArquivo" name="name" placeholder="Nome do Arquivo *" required />
           <input type="file" id="arquivo" name="file" accept=".pdf,.doc,.docx,.png,.jpg,.jpeg,.mp4,.zip" required />

@@ -1,46 +1,75 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Editar Seção</title>
   <link rel="stylesheet" href="../css/geral.css" />
   <link rel="stylesheet" href="../css/editar-secao.css" />
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
+
 <body>
   <div class="layout">
+    <div class="hamburger-menu">
+        <i class="fas fa-bars"></i>
+    </div>
+    <div class="overlay"></div>
+
     <nav class="sidebar">
-      <h3>Menu</h3>
-      <a href="home.html">Home</a>
-      <a href="pesquisar-disciplina.html">Pesquisar Disciplina</a>
-      <a href="perfil.html">Editar Perfil</a>
-      <button onclick="logout()">Sair</button>
+      <div class="sidebar-header">
+        <i class="fas fa-graduation-cap"></i>
+      </div>
+
+      <ul class="sidebar-menu">
+        <li><a href="home.html"> </i> Home</a></li>
+        <li><a href="pesquisar-disciplina.html"> </i> Disciplinas</a></li>
+        <li class="active"><a href="editar-secao.html"> </i> Editar Seção</a></li>
+        <li><a href="perfil.html"></i> Editar Perfil</a></li>
+      </ul>
+
+      <div class="sidebar-footer">
+        <a href="#" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Sair</a>
+        <a href="config.html"><i class="fas fa-cog"></i></a>
+      </div>
     </nav>
 
     <main class="content">
-      <h2>Editar Seção</h2>
+      <header class="content-header">
+        <div class="user-info">
+          <i class="fas fa-user-circle"></i> <span id="boasVindas">Olá, Aluno(a)!</span>
+        </div>
+      </header>
 
-      <form id="formEditarSecao">
-        <label for="title">Título da Seção *</label>
-        <input type="text" id="title" name="title" required />
+      <div class="main-card">
+        <h2 class="card-title">Editar Seção</h2>
 
-        <label for="type">Tipo *</label>
-        <select id="type" name="type" required>
-          <option value="lecture">Aula</option>
-          <option value="activity">Atividade</option>
-        </select>
+        <form id="formEditarSecao">
+          <label for="title">Título da Seção *</label>
+          <input type="text" id="title" name="title" required />
 
-        <label for="dueDateTime">Prazo (opcional)</label>
-        <input type="datetime-local" id="dueDateTime" name="dueDateTime" />
+          <label for="type">Tipo *</label>
+          <select id="type" name="type" required>
+            <option value="lecture">Aula</option>
+            <option value="activity">Atividade</option>
+          </select>
 
-        <label for="submissionLimit">Limite de Envio</label>
-        <input type="number" id="submissionLimit" name="submissionLimit" min="1" value="1" />
+          <label for="dueDateTime">Prazo (opcional)</label>
+          <input type="datetime-local" id="dueDateTime" name="dueDateTime" />
 
-        <button type="submit">Salvar Alterações</button>
-      </form>
+          <label for="submissionLimit">Limite de Envio</label>
+          <input type="number" id="submissionLimit" name="submissionLimit" min="1" value="1" />
+
+          <button type="submit">Salvar Alterações</button>
+        </form>
+      </div>
     </main>
   </div>
 
   <script src="../js/editar-secao.js"></script>
 </body>
+
 </html>
