@@ -93,7 +93,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         throw new Error(errorData.message || "Erro ao enviar o arquivo.");
       }
 
-      window.location.href = `secoes.html?id=${courseId}`;
+      window.location.href = `disciplina-detalhe-home.html?id=${courseId}`;
     } catch (err) {
       console.error(err);
       alert(err.message || "Erro ao enviar o arquivo.");

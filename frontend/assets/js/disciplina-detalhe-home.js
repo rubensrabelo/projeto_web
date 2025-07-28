@@ -1,165 +1,195 @@
 document.addEventListener("DOMContentLoaded", async () => {
-    const token = localStorage.getItem("token");
-    if (!token) {
-        return window.location.href = "../../index.html";
+  const token = localStorage.getItem("token");
+  if (!token) {
+    window.location.href = "../../index.html";
+    return;
+  }
+
+  const urlParams = new URLSearchParams(window.location.search);
+  const disciplinaId = urlParams.get("id");
+  if (!disciplinaId) {
+    alert("ID da disciplina não foi fornecido na URL.");
+    return;
+  }
+
+  window.currentDisciplineId = disciplinaId;
+
+  try {
+    // Busca dados do usuário
+    const userRes = await fetch("http://localhost:3000/users/me", {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+
+    if (userRes.ok) {
+      const userData = await userRes.json();
+      const nomeProf = userData.firstname || "Professor(a)";
+      document.querySelector(".user-info span").textContent = `Olá, ${nomeProf}!`;
     }
 
-    const urlParams = new URLSearchParams(window.location.search);
-    const disciplinaId = urlParams.get('id');
-    window.currentDisciplineId = disciplinaId;
+    const disciplinaRes = await fetch(`http://localhost:3000/courses/${disciplinaId}/teacher`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
 
-    let disciplinaData = {
-        name: 'Disciplina Desconhecida',
+    let disciplinaNome = "Disciplina";
+    if (disciplinaRes.ok) {
+      const data = await disciplinaRes.json();
+      disciplinaNome = data.name || disciplinaNome;
+    }
+
+    document.getElementById("discipline-name-back").textContent = disciplinaNome;
+    document.getElementById("discipline-main-title").textContent = disciplinaNome;
+
+    const topicsRes = await fetch(`http://localhost:3000/topics/course/${disciplinaId}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+
+    const topics = topicsRes.ok ? await topicsRes.json() : [];
+    const container = document.getElementById("topics-container");
+    const addButton = document.getElementById("add-topic-button");
+    addButton.remove();
+
+    if (topics.length > 0) {
+      for (const topic of topics) {
+        const card = document.createElement("div");
+        card.className = "detail-section-card";
+
+        const icon = topic.type === "lecture"
+          ? "fas fa-book"
+          : topic.type === "activity"
+            ? "fas fa-tasks"
+            : "fas fa-lightbulb";
+
+        card.innerHTML = `
+          <h2 class="section-card-title">
+            <i class="${icon}"></i> ${topic.title}
+          </h2>
+          <div class="section-card-body">
+            <p>${topic.description || "Sem descrição."}</p>
+
+            <ul class="files-list" id="files-list-${topic._id}">
+              <li>Carregando arquivos...</li>
+            </ul>
+
+            <div class="buttons-container">
+              <button class="btn-edit-topic" onclick="editarTopico('${topic._id}')">
+                <i class="fas fa-edit"></i>
+              </button>
+              <button class="btn-add-file" onclick="adicionarArquivo('${topic._id}')">
+                <i class="fas fa-paperclip"></i>
+              </button>
+            </div>
+          </div>
+        `;
+
+        container.appendChild(card);
+
+        carregarArquivos(topic._id, token);
+      }
+    } else {
+      const noTopic = document.createElement("p");
+      noTopic.style.color = "#666";
+      noTopic.textContent = "Nenhum tópico adicionado ainda.";
+      container.appendChild(noTopic);
+    }
+
+    container.appendChild(addButton);
+    addButton.onclick = () => {
+      window.location.href = `criar-secao.html?disciplineId=${disciplinaId}`;
     };
 
-    if (!disciplinaId) {
-        console.warn("ID da disciplina não encontrado na URL. Carregando página com dados padrão.");
-    }
-
-    try {
-        // Carregar informações do usuário
-        const userRes = await fetch("http://localhost:3000/users/me", {
-            headers: { Authorization: `Bearer ${token}` }
-        });
-        const userData = await userRes.json();
-        const nomeProf = userData.firstname || "Professor(a)";
-        const userNameHeaderSpan = document.querySelector('.user-info span');
-        if (userNameHeaderSpan) {
-            userNameHeaderSpan.innerText = `Olá, ${nomeProf}!`;
-        }
-
-        // Carregar dados da disciplina
-        if (disciplinaId) {
-            const disciplinaRes = await fetch(`http://localhost:3000/courses/${disciplinaId}/teacher`, {
-                headers: { Authorization: `Bearer ${token}` }
-            });
-
-            if (disciplinaRes.ok) {
-                disciplinaData = await disciplinaRes.json();
-            } else {
-                console.error(`Erro ao carregar disciplina (Status: ${disciplinaRes.status}):`, await disciplinaRes.text());
-            }
-
-            // Carregar avisos
-            try {
-                const avisosRes = await fetch(`http://localhost:3000/courses/${disciplinaId}/notices`, {
-                    headers: { Authorization: `Bearer ${token}` }
-                });
-                if (avisosRes.ok) {
-                    disciplinaData.notices = await avisosRes.json();
-                } else {
-                    disciplinaData.notices = [];
-                }
-            } catch (e) {
-                disciplinaData.notices = [];
-            }
-
-            // Carregar assuntos
-            try {
-                const assuntosRes = await fetch(`http://localhost:3000/courses/${disciplinaId}/subjects`, {
-                    headers: { Authorization: `Bearer ${token}` }
-                });
-                if (assuntosRes.ok) {
-                    disciplinaData.subjects = await assuntosRes.json();
-                } else {
-                    disciplinaData.subjects = [];
-                }
-            } catch (e) {
-                disciplinaData.subjects = [];
-            }
-        }
-
-    } catch (err) {
-        console.error("Erro na requisição de dados da disciplina ou usuário:", err);
-    } finally {
-        // Preencher o nome da disciplina
-        const backButton = document.querySelector('.discipline-detail-header .back-button');
-        if (backButton) {
-            backButton.innerHTML = `
-                <i class="fas fa-chevron-left"></i> ${disciplinaData.name || 'Disciplina'}
-            `;
-        }
-        const mainTitle = document.querySelector('.discipline-main-title');
-        if (mainTitle) {
-            mainTitle.textContent = disciplinaData.name || 'Disciplina';
-        }
-
-        // Renderizar avisos
-        const noticeSectionCard = document.querySelector('.detail-section-card:nth-of-type(1) .section-items-list');
-        if (noticeSectionCard) {
-            noticeSectionCard.innerHTML = '';
-            if (disciplinaData.notices && disciplinaData.notices.length > 0) {
-                disciplinaData.notices.forEach(notice => {
-                    const listItem = document.createElement('li');
-                    listItem.className = 'section-item';
-                    listItem.innerHTML = `
-                        <div class="item-info">
-                            <i class="fas fa-bullhorn section-item-icon"></i>
-                            <span class="item-text">${notice.title || 'Aviso'}</span>
-                        </div>
-                    `;
-                    noticeSectionCard.appendChild(listItem);
-                });
-            } else {
-                noticeSectionCard.innerHTML = '<li class="section-item"><span class="item-text" style="color:#666;">Nenhum aviso adicionado ainda.</span></li>';
-            }
-        }
-
-        // Renderizar assuntos
-        const subjectSectionCard = document.querySelector('.detail-section-card:nth-of-type(2) .section-items-list');
-        if (subjectSectionCard) {
-            subjectSectionCard.innerHTML = '';
-            if (disciplinaData.subjects && disciplinaData.subjects.length > 0) {
-                disciplinaData.subjects.forEach(subject => {
-                    const listItem = document.createElement('li');
-                    listItem.className = 'section-item';
-                    listItem.innerHTML = `
-                        <div class="item-info">
-                            <i class="fas fa-book section-item-icon"></i>
-                            <span class="item-text">${subject.title || 'Assunto'}</span>
-                        </div>
-                    `;
-                    subjectSectionCard.appendChild(listItem);
-                });
-            } else {
-                subjectSectionCard.innerHTML = '<li class="section-item"><span class="item-text" style="color:#666;">Nenhum assunto adicionado ainda.</span></li>';
-            }
-        }
-
-        // Renderizar tópicos
-        const topicSectionCard = document.querySelector('.detail-section-card:nth-of-type(3) .section-items-list');
-        if (topicSectionCard) {
-            topicSectionCard.innerHTML = '';
-            if (disciplinaData.topics && disciplinaData.topics.length > 0) {
-                disciplinaData.topics.forEach(topic => {
-                    const listItem = document.createElement('li');
-                    listItem.className = 'section-item';
-                    listItem.innerHTML = `
-                        <div class="item-info">
-                            <i class="${topic.iconClass || 'fas fa-file'} section-item-icon"></i>
-                            <span class="item-text">${topic.title}</span>
-                        </div>
-                        <button class="item-action-button" onclick="goToTopicDetail('${topic._id}')">
-                            <i class="fas fa-chevron-right"></i>
-                        </button>
-                    `;
-                    topicSectionCard.appendChild(listItem);
-                });
-            } else {
-                topicSectionCard.innerHTML = '<li class="section-item"><span class="item-text" style="color:#666;">Nenhum tópico adicionado ainda.</span></li>';
-            }
-        }
-    }
+  } catch (error) {
+    console.error("Erro ao carregar dados:", error);
+    alert("Erro ao carregar dados da disciplina.");
+  }
 });
 
-// Funções de navegação (já existentes)
-function goToTopicDetail(topicId) {
-    console.log(`Navigating to topic detail for ID: ${topicId}`);
-    alert(`Você clicou no tópico com ID: ${topicId}`);
-    // window.location.href = `topico-detalhe.html?id=${topicId}`;
+async function carregarArquivos(topicId, token) {
+  try {
+    const filesRes = await fetch(`http://localhost:3000/files/${topicId}`, {
+      headers: { Authorization: `Bearer ${token}` }
+    });
+
+    const filesListUl = document.getElementById(`files-list-${topicId}`);
+    filesListUl.innerHTML = "";
+
+    if (filesRes.ok) {
+      const files = await filesRes.json();
+
+      if (files.length > 0) {
+        files.forEach(file => {
+          const li = document.createElement("li");
+          li.className = "file-item";
+
+          const fileLink = document.createElement("a");
+          fileLink.href = file.url;
+          fileLink.textContent = file.name;
+          fileLink.target = "_blank";
+          fileLink.className = "file-link";
+
+          const btnGroup = document.createElement("div");
+          btnGroup.className = "file-btn-group";
+
+          const btnEdit = document.createElement("button");
+          btnEdit.className = "btn-edit-file";
+          btnEdit.title = "Editar arquivo";
+          btnEdit.innerHTML = `<i class="fas fa-edit"></i>`;
+          btnEdit.onclick = () => {
+            window.location.href = `editar-arquivo.html?fileId=${file._id}`;
+          };
+
+          const btnDelete = document.createElement("button");
+          btnDelete.className = "btn-delete-file";
+          btnDelete.title = "Excluir arquivo";
+          btnDelete.innerHTML = `<i class="fas fa-trash"></i>`;
+          btnDelete.onclick = async () => {
+            if (confirm(`Deseja realmente excluir o arquivo "${file.name}"?`)) {
+              try {
+                const res = await fetch(`http://localhost:3000/files/delete/${file._id}`, {
+                  method: "DELETE",
+                  headers: { Authorization: `Bearer ${token}` },
+                });
+                if (res.ok) {
+                  li.remove();
+                } else {
+                  alert("Erro ao excluir arquivo.");
+                }
+              } catch {
+                alert("Erro na requisição para excluir arquivo.");
+              }
+            }
+          };
+
+          btnGroup.appendChild(btnEdit);
+          btnGroup.appendChild(btnDelete);
+
+          li.appendChild(fileLink);
+          li.appendChild(btnGroup);
+
+          filesListUl.appendChild(li);
+        });
+      } else {
+        filesListUl.innerHTML = "<li>Nenhum arquivo adicionado.</li>";
+        filesListUl.style.color = "#666";
+      }
+    } else {
+      filesListUl.innerHTML = "<li style='color: red;'>Erro ao carregar arquivos.</li>";
+    }
+  } catch (err) {
+    const filesListUl = document.getElementById(`files-list-${topicId}`);
+    filesListUl.innerHTML = "<li style='color: red;'>Erro ao carregar arquivos.</li>";
+    console.error("Erro ao carregar arquivos:", err);
+  }
+}
+
+function editarTopico(topicId) {
+  window.location.href = `editar-secao.html?id=${topicId}`;
+}
+
+function adicionarArquivo(topicId) {
+  window.location.href = `adicionar-arquivo.html?topicId=${topicId}`;
 }
 
 function logout() {
-    localStorage.removeItem("token");
-    window.location.href = "../../index.html";
+  localStorage.removeItem("token");
+  window.location.href = "../../index.html";
 }

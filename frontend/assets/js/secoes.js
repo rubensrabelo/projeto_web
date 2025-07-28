@@ -106,7 +106,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         try {
             // Endpoint para criar uma nova sessão
-            const res = await fetch("http://localhost:3000/sessions", { // Exemplo: POST para /sessions
+            const res = await fetch("http://localhost:3000/topics", { // Exemplo: POST para /sessions
                 method: "POST",
                 headers: {
                     "Authorization": `Bearer ${token}`

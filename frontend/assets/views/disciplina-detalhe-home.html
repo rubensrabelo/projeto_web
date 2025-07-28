@@ -1,126 +1,59 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
-    <meta charset="UTF-8" />
-    <title>TL - DISCIPLINA - DETALHE - HOME</title>
-    <link rel="stylesheet" href="../css/geral.css" />
-    <link rel="stylesheet" href="../css/disciplina-detalhe-home.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <meta charset="UTF-8" />
+  <title>TL - DISCIPLINA - DETALHE - HOME</title>
+  <link rel="stylesheet" href="../css/geral.css" />
+  <link rel="stylesheet" href="../css/disciplina-detalhe-home.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
 </head>
-
 <body>
-    <div class="layout">
-        <nav class="sidebar">
-            <div class="sidebar-header">
-                <i class="fas fa-graduation-cap"></i>
-            </div>
-                <ul class="sidebar-menu">
-                    <li class="active"><a href="home.html">Home</a></li> 
-                    <li><a href="pesquisar-disciplina.html">Disciplinas</a></li>
-                </ul>
+  <div class="layout">
+    <nav class="sidebar">
+      <div class="sidebar-header">
+        <i class="fas fa-graduation-cap"></i>
+      </div>
+      <ul class="sidebar-menu">
+        <li class="active"><a href="home.html">Home</a></li>
+        <li><a href="pesquisar-disciplina.html">Disciplinas</a></li>
+      </ul>
+      <div class="sidebar-footer">
+        <a href="#" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Sair</a>
+        <a href="config.html"><i class="fas fa-cog"></i></a>
+      </div>
+    </nav>
 
-            <div class="sidebar-footer">
-                <a href="#" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Sair</a>
-                <a href="config.html"><i class="fas fa-cog"></i></a>
-            </div>
-        </nav>
+    <main class="content">
+      <header class="content-header">
+        <div class="user-info">
+          <i class="fas fa-user-circle"></i> <span>Olá, Professor(a)!</span>
+        </div>
+      </header>
 
-        <main class="content">
-            <header class="content-header">
-                <div class="user-info">
-                    <i class="fas fa-user-circle"></i> Olá, Professor(a)!
-                </div>
-            </header>
+      <div class="discipline-detail-header">
+        <button class="back-button" onclick="window.history.back()">
+          <i class="fas fa-chevron-left"></i> <span id="discipline-name-back">Disciplina</span>
+        </button>
+      </div>
 
-            <div class="discipline-detail-header">
-                <button class="back-button" onclick="window.history.back()">
-                    <i class="fas fa-chevron-left"></i> Inglês </button>
-            </div>
+      <h1 class="discipline-main-title" id="discipline-main-title">Disciplina</h1>
 
-            <h1 class="discipline-main-title">Inglês</h1>
-            <div class="detail-sections-container">
-                <div class="detail-section-card">
-                    <h2 class="section-card-title"><i class="fas fa-clipboard-list"></i> Avisos</h2>
-                    <ul class="section-items-list">
-                        <li class="section-item">
-                            <div class="item-info">
-                                <i class="fas fa-calendar-alt section-item-icon"></i>
-                                <span class="item-text">Dia do Aluno: Evento no Auditório</span>
-                            </div>
-                            <button class="item-action-button"><i class="fas fa-chevron-right"></i></button>
-                        </li>
-                        <li class="section-item">
-                            <div class="item-info">
-                                <i class="fas fa-bell section-item-icon"></i>
-                                <span class="item-text">Alteração de Horário da Aula de Revisão</span>
-                            </div>
-                            <button class="item-action-button"><i class="fas fa-chevron-right"></i></button>
-                        </li>
-                    </ul>
-                </div>
+      <div class="detail-sections-container" id="topics-container">
+        <!-- Tópicos vão aqui via JS -->
 
-                <div class="detail-section-card">
-                    <h2 class="section-card-title"><i class="fas fa-folder-open"></i> Outros Assuntos</h2>
-                    <ul class="section-items-list">
-                        <li class="section-item">
-                            <div class="item-info">
-                                <i class="fas fa-comments section-item-icon"></i>
-                                <span class="item-text">Fórum de Discussão Geral</span>
-                            </div>
-                            <button class="item-action-button"><i class="fas fa-chevron-right"></i></button>
-                        </li>
-                        <li class="section-item">
-                            <div class="item-info">
-                                <i class="fas fa-upload section-item-icon"></i>
-                                <span class="item-text">Envio de atividade: Exercícios da Unidade 1</span>
-                            </div>
-                            <button class="item-action-button"
-                                onclick="window.location.href='disciplina-detalhe-visualizacao-envio.html'">
-                                <i class="fas fa-chevron-right"></i>
-                            </button>
-                        </li>
-                    </ul>
-                </div>
+        <div class="add-topic-item" id="add-topic-button" style="cursor:pointer;">
+          <div class="add-item-content">
+            <i class="fas fa-folder-plus"></i>
+            <span>Adicionar novo tópico</span>
+          </div>
+          <div class="add-item-button">
+            <i class="fas fa-plus-circle"></i>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
 
-                <div class="detail-section-card">
-                    <h2 class="section-card-title"><i class="fas fa-lightbulb"></i> Título do Tópico</h2>
-                    <ul class="section-items-list">
-                        <li class="section-item">
-                            <div class="item-info">
-                                <i class="fas fa-book section-item-icon"></i>
-                                <span class="item-text">Arquivos de Leitura: Unidade 1</span>
-                            </div>
-                            <button class="item-action-button"><i class="fas fa-chevron-right"></i></button>
-                        </li>
-                        <li class="section-item">
-                            <div class="item-info">
-                                <i class="fas fa-upload section-item-icon"></i>
-                                <span class="item-text">Envio de atividade: Exercícios da Unidade 1</span>
-                            </div>
-                            <button class="item-action-button"
-                                onclick="window.location.href='disciplina-detalhe-visualizacao-envio.html'">
-                                <i class="fas fa-chevron-right"></i>
-                            </button>
-                        </li>
-                    </ul>
-                </div>
-                <div class="add-topic-item"
-                    onclick="window.location.href='criar-secao.html?disciplineId=' + window.currentDisciplineId">
-                    <div class="add-item-content">
-                        <i class="fas fa-folder-plus"></i>
-                        <span>Adicionar novo tópico</span>
-                    </div>
-                    <div class="add-item-button">
-                        <i class="fas fa-plus-circle"></i>
-                    </div>
-                </div>
-
-            </div>
-        </main>
-    </div>
-
-    <script src="../js/disciplina-detalhe-home.js"></script>
+  <script src="../js/disciplina-detalhe-home.js"></script>
 </body>
-
 </html>
