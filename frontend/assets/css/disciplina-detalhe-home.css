@@ -41,8 +41,9 @@
 }
 
 .discipline-detail-header .back-button:hover {
-  background-color: var(--light-gray-bg);
-  transform: translateX(-3px);
+  background-color: var(--primary-blue);
+  color: var(--white);
+  transform: translateY(-3px);
 }
 
 .discipline-detail-header .back-button i {
